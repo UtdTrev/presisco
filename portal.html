@@ -1,0 +1,737 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Commercial Farm Portal | Precisco Farm Ventures Ltd.</title>
+  <meta name="description" content="Sign in to the Precisco Farm Ventures commercial layer portal using your staff access code.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Manrope:wght@500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/trev-style.css">
+  <style>
+    :root {
+      --accent: #15803d; /* Fresh emerald farm green */
+      --accent-gold: #F2B705;
+    }
+    .progress-ring {
+      background: conic-gradient(#15803d calc(var(--progress)*1%), #e5e2d9 0);
+    }
+    .badge-gold {
+      background: #F2B705;
+      color: #0a0a0a;
+      font-weight: 800;
+      padding: 0.35rem 0.75rem;
+      border-radius: 9999px;
+      font-size: 0.7rem;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+    }
+    .quick-code-chip {
+      background: #f4f3ef;
+      border: 1px solid var(--border);
+      padding: 4px 10px;
+      border-radius: 6px;
+      font-size: 0.75rem;
+      font-family: ui-monospace, SFMono-Regular, monospace;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      display: inline-block;
+      margin-top: 4px;
+      margin-right: 4px;
+    }
+    .quick-code-chip:hover {
+      background: #15803d;
+      color: #ffffff;
+      border-color: #15803d;
+    }
+    .data-table-custom {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.85rem;
+      margin-top: 1rem;
+    }
+    .data-table-custom th {
+      text-align: left;
+      padding: 10px 14px;
+      background: #faf9f6;
+      border-bottom: 2px solid var(--border);
+      color: var(--text-muted);
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+    .data-table-custom td {
+      padding: 12px 14px;
+      border-bottom: 1px solid var(--border);
+      color: var(--dark);
+    }
+    .data-table-custom tr:hover td {
+      background: #fafaf8;
+    }
+    .status-pill-green {
+      background: rgba(22, 163, 74, 0.12);
+      color: #166534;
+      font-weight: 700;
+      padding: 3px 8px;
+      border-radius: 9999px;
+      font-size: 0.7rem;
+      display: inline-block;
+    }
+    .status-pill-amber {
+      background: rgba(245, 158, 11, 0.15);
+      color: #92400e;
+      font-weight: 700;
+      padding: 3px 8px;
+      border-radius: 9999px;
+      font-size: 0.7rem;
+      display: inline-block;
+    }
+    .status-pill-rose {
+      background: rgba(244, 63, 94, 0.12);
+      color: #9f1239;
+      font-weight: 700;
+      padding: 3px 8px;
+      border-radius: 9999px;
+      font-size: 0.7rem;
+      display: inline-block;
+    }
+  </style>
+</head>
+<body class="portal-page bg-light text-text antialiased">
+  <a href="#main-content" class="skip-link">Skip to portal login</a>
+
+  <!-- Main Header Navigation (TREV AI Style Lockup) -->
+  <header class="main-header" id="header" role="banner">
+    <div class="header-container container">
+      <a href="portal.html" class="logo" aria-label="Precisco Farm Ventures">
+        <svg class="logo-mark" width="30" height="30" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <rect x="2" y="16" width="8" height="18" rx="2" fill="#15803d"/>
+          <rect x="14" y="8" width="8" height="26" rx="2" fill="#15803d"/>
+          <rect x="26" y="2" width="8" height="32" rx="2" fill="#15803d"/>
+          <circle cx="30" cy="4" r="4" fill="#F2B705"/>
+        </svg>
+        <span class="logo-accent" style="color:#15803d;">PRECISCO</span> <span class="logo-text">FARMS</span>
+      </a>
+      
+      <nav class="primary-nav" id="primary-nav" aria-label="Main Directory">
+        <ul class="nav-links">
+          <li><a href="portal.html" class="nav-link active" aria-current="page">Farm Portal</a></li>
+          <li><a href="#shift-checklists" class="nav-link">Shift Checklists</a></li>
+          <li><a href="#egg-harvest" class="nav-link">Egg Harvest</a></li>
+          <li><a href="#b2b-sales" class="nav-link">B2B Sales & Orders</a></li>
+          <li><a href="#health-welfare" class="nav-link">Health & Welfare</a></li>
+          <li><a href="#farm-financials" class="nav-link">P&L Financials</a></li>
+          <li><a href="#biosecurity-section" class="nav-link">Gate Biosecurity</a></li>
+        </ul>
+        <div class="nav-cta">
+          <button onclick="document.getElementById('portalLoginForm')?.scrollIntoView({behavior:'smooth'});" class="btn btn-primary btn-sm" style="background:#15803d;">Staff Login</button>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main-content" class="portal-main">
+    <section class="portal-login-section" aria-labelledby="portal-title">
+      <div class="container portal-shell">
+        
+        <!-- ==========================================
+             STATE 1: ACCESS CODE GATEWAY
+             ========================================== -->
+        <div id="portalLoginPanel" class="portal-login-layout">
+          <div class="portal-intro">
+            <span class="section-tag" style="color:#15803d;">Commercial Layer Portal</span>
+            <h1 id="portal-title">Welcome to your Precisco Farm portal.</h1>
+            <p>Enter the staff access code issued to your operational unit. Your dashboard automatically displays resources, shift checklists, flock telemetry, and B2B orders for your approved role.</p>
+            <ul class="portal-benefits">
+              <li><span aria-hidden="true" style="color:#15803d;">✓</span> Real-time 6,000 Layer Hen-Day % & harvest logs</li>
+              <li><span aria-hidden="true" style="color:#15803d;">✓</span> Corporate B2B bulk egg orders & waybill dispatch</li>
+              <li><span aria-hidden="true" style="color:#15803d;">✓</span> Veterinary health, mortality & withdrawal locks</li>
+            </ul>
+          </div>
+
+          <div class="portal-login-card">
+            <div class="secure-row">
+              <span class="secure-dot" aria-hidden="true" style="background:#15803d;"></span>
+              <span>Staff access</span>
+            </div>
+            <h2>Enter your access code</h2>
+            <p>Codes are issued individually to authorized farm personnel.</p>
+            
+            <form id="portalLoginForm" class="portal-login-form" onsubmit="event.preventDefault(); handleStaffLogin();">
+              <div class="form-group">
+                <label for="accessCode">Staff Access code</label>
+                <input id="accessCode" name="accessCode" class="form-input access-code-input" type="text" inputmode="text" value="PFV-MGR-2026" placeholder="PFV-MGR-2026" required>
+              </div>
+
+              <!-- Quick shortcut badges -->
+              <div style="margin-top:-6px;">
+                <span style="font-size:0.72rem; color:var(--text-muted); display:block; margin-bottom:2px;">Quick Test Codes:</span>
+                <span class="quick-code-chip" onclick="document.getElementById('accessCode').value='PFV-MGR-2026';">PFV-MGR-2026 (Farm Manager)</span>
+                <span class="quick-code-chip" onclick="document.getElementById('accessCode').value='PFV-DIR-2026';">PFV-DIR-2026 (Director / Owner)</span>
+                <span class="quick-code-chip" onclick="document.getElementById('accessCode').value='PFV-VET-2026';">PFV-VET-2026 (Veterinary Officer)</span>
+                <span class="quick-code-chip" onclick="document.getElementById('accessCode').value='PFV-ATT-2026';">PFV-ATT-2026 (Poultry Attendant)</span>
+              </div>
+
+              <label class="remember-row" for="rememberCode" style="margin-top:8px;">
+                <input id="rememberCode" type="checkbox" checked>
+                <span>Remember this code on this device</span>
+              </label>
+
+              <div id="portalLoginMessage" class="form-message" role="status" aria-live="polite" hidden></div>
+              <button id="portalLoginButton" type="submit" class="btn btn-primary btn-full" style="background:#15803d;">
+                <span>Open Farm Portal</span>
+                <span aria-hidden="true">→</span>
+              </button>
+            </form>
+
+            <div class="portal-help">
+              <p><strong>Need help with your access code?</strong></p>
+              <a href="https://wa.me/2348035550192?text=Hello%20Precisco%20Farm%20Admin.%20I%20need%20assistance%20with%20my%20staff%20portal%20access%20code." target="_blank" rel="noopener">Contact Farm Admin on WhatsApp →</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- ==========================================
+             STATE 2: AUTHENTICATED FARM DASHBOARD
+             ========================================== -->
+        <div id="studentDashboard" class="student-dashboard" tabindex="-1">
+          
+          <!-- Topbar -->
+          <div class="dashboard-topbar">
+            <div>
+              <span id="studentPackageBadge" class="dashboard-package-badge" style="background:#F2B705; color:#0a0a0a;">FARM MANAGER</span>
+              <h1>Welcome, <span id="studentName">Mr. Adebayo Adeleke</span>.</h1>
+              <p>Your 6,000 POL layer operations, telemetry, shift checklists & B2B dispatch records are listed below.</p>
+            </div>
+            <div style="display:flex; gap:8px; align-items:center;">
+              <button onclick="handleStaffLogout();" type="button" class="btn btn-outline btn-sm">Sign Out</button>
+            </div>
+          </div>
+
+          <!-- Overall Progress Ring Banner -->
+          <section class="learning-overview" aria-labelledby="learningOverviewTitle" style="margin-top:2rem;">
+            <div class="progress-ring-card">
+              <div class="progress-ring" id="overallProgressRing" style="--progress:88"><span id="overallProgressValue">87.8%</span></div>
+              <div>
+                <span class="section-tag" style="color:#15803d;">Overall Laying Efficiency</span>
+                <h2 id="learningOverviewTitle">Today's Layer Operations (PFV-LAY-001)</h2>
+                <p id="progressSummary">5,172 eggs harvested across 2 shift runs, 157 feed bags in store, climate optimal (29.6°C • 72% RH).</p>
+              </div>
+            </div>
+            <button onclick="openModal('modalEggHarvest')" class="btn btn-primary continue-learning-button" type="button" style="background:#15803d;">Log Daily Harvest <span>→</span></button>
+          </section>
+
+          <!-- 4-Metric Progress Grid -->
+          <div class="progress-metric-grid" style="margin-top:1.5rem;">
+            <article>
+              <span>HARVEST TODAY</span>
+              <strong id="progressLessons">5,172 Eggs</strong>
+              <small>172.4 Crates Produced (98.6% Grade A)</small>
+            </article>
+            <article>
+              <span>LIVE POL BIRDS</span>
+              <strong id="progressAssignments">5,892 Live</strong>
+              <small>98.2% Livability (108 total mortality)</small>
+            </article>
+            <article>
+              <span>HEN-DAY LAYING</span>
+              <strong id="progressNextClass" style="color:#15803d;">87.8%</strong>
+              <small id="progressNextClassDate">Peak Target 88.5% Benchmark</small>
+            </article>
+            <article>
+              <span>DAYS OF FEED</span>
+              <strong id="progressCertificate">6 Days Left</strong>
+              <small id="progressCertificateDetail">157 Bags Warehouse Buffer (&gt;5d Safe)</small>
+            </article>
+          </div>
+
+          <!-- Dashboard Meta Grid -->
+          <div class="dashboard-meta-grid">
+            <div class="dashboard-meta-card">
+              <span>Flock Designation</span>
+              <strong>PFV-LAY-001 (34 Wks Peak)</strong>
+            </div>
+            <div class="dashboard-meta-card">
+              <span>B2B Revenue Invoiced</span>
+              <strong>₦1,996,000 (470 Crates)</strong>
+            </div>
+            <div class="dashboard-meta-card">
+              <span>Emergency Support</span>
+              <a href="https://wa.me/2348035550192" target="_blank" rel="noopener">Lead Vet WhatsApp (Dr. Emeka) →</a>
+            </div>
+          </div>
+
+          <!-- ==========================================
+               SECTION 1: DAILY SHIFT SETUP & CHECKLISTS
+               ========================================== -->
+          <section id="shift-checklists" style="margin-bottom:3.5rem;">
+            <div style="margin-bottom:1.5rem;">
+              <span class="section-tag" style="color:#15803d;">Daily Shift Workflow</span>
+              <h2>Your Shift Setup Checklist (SOP-LAY-001)</h2>
+              <p>Complete mandatory inspections and routines for each shift. Progress is saved on this device.</p>
+            </div>
+
+            <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap:1.25rem;">
+              <!-- Morning Shift Card -->
+              <div class="portal-resource-card" style="padding:1.5rem;">
+                <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:1rem; border-bottom:1px solid var(--border); padding-bottom:0.75rem;">
+                  <div>
+                    <h3 style="font-size:1.1rem; margin:0;">Morning Shift (06:30 - 12:00)</h3>
+                    <small style="color:var(--text-muted);">Attendant: Chinedu Obi</small>
+                  </div>
+                  <span class="status-pill-green">✓ 5/5 Done</span>
+                </div>
+                <div style="display:grid; gap:0.6rem; font-size:0.85rem;">
+                  <label style="display:flex; gap:8px; align-items:center;"><input type="checkbox" checked disabled> <span>1. Inspect 6,000 birds across 3 tiers</span></label>
+                  <label style="display:flex; gap:8px; align-items:center;"><input type="checkbox" checked disabled> <span>2. Remove mortality to biohazard bin</span></label>
+                  <label style="display:flex; gap:8px; align-items:center;"><input type="checkbox" checked disabled> <span>3. Check drinker pressure (2.2 Bar)</span></label>
+                  <label style="display:flex; gap:8px; align-items:center;"><input type="checkbox" checked disabled> <span>4. Distribute morning feed (700 kg)</span></label>
+                  <label style="display:flex; gap:8px; align-items:center;"><input type="checkbox" checked disabled> <span>5. Round 1 Harvest (08:30 AM - 3,164 eggs)</span></label>
+                </div>
+              </div>
+
+              <!-- Afternoon Shift Card -->
+              <div class="portal-resource-card" style="padding:1.5rem;">
+                <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:1rem; border-bottom:1px solid var(--border); padding-bottom:0.75rem;">
+                  <div>
+                    <h3 style="font-size:1.1rem; margin:0;">Afternoon Shift (12:00 - 17:30)</h3>
+                    <small style="color:var(--text-muted);">Attendant: Blessing Eze</small>
+                  </div>
+                  <span class="status-pill-green">✓ 4/4 Done</span>
+                </div>
+                <div style="display:grid; gap:0.6rem; font-size:0.85rem;">
+                  <label style="display:flex; gap:8px; align-items:center;"><input type="checkbox" checked disabled> <span>1. Asaba ambient heat check (29.6°C)</span></label>
+                  <label style="display:flex; gap:8px; align-items:center;"><input type="checkbox" checked disabled> <span>2. Monitor Sick Bay Pen S-1</span></label>
+                  <label style="display:flex; gap:8px; align-items:center;"><input type="checkbox" checked disabled> <span>3. Round 2 Harvest (02:30 PM - 2,008 eggs)</span></label>
+                  <label style="display:flex; gap:8px; align-items:center;"><input type="checkbox" checked disabled> <span>4. Stack pulp trays in cold room (18°C)</span></label>
+                </div>
+              </div>
+
+              <!-- Evening Shift Card -->
+              <div class="portal-resource-card" style="padding:1.5rem;">
+                <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:1rem; border-bottom:1px solid var(--border); padding-bottom:0.75rem;">
+                  <div>
+                    <h3 style="font-size:1.1rem; margin:0;">Evening Shift (17:30 - 20:30)</h3>
+                    <small style="color:var(--text-muted);">Attendant: Musa Ibrahim</small>
+                  </div>
+                  <span class="status-pill-amber">In Progress</span>
+                </div>
+                <div style="display:grid; gap:0.6rem; font-size:0.85rem;">
+                  <label style="display:flex; gap:8px; align-items:center;"><input type="checkbox" checked> <span>1. Final flock welfare walkthrough</span></label>
+                  <label style="display:flex; gap:8px; align-items:center;"><input type="checkbox" checked> <span>2. Check 15,000L header reservoir</span></label>
+                  <label style="display:flex; gap:8px; align-items:center;"><input type="checkbox"> <span>3. Verify lighting timer (shutdown 21:30)</span></label>
+                  <label style="display:flex; gap:8px; align-items:center;"><input type="checkbox"> <span>4. Lock and padlock pen doors</span></label>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <!-- ==========================================
+               SECTION 2: FLOCK TIMETABLE & SHIFT SCHEDULE
+               ========================================== -->
+          <section id="timetable-section" style="margin-bottom:3.5rem;">
+            <div style="margin-bottom:1.5rem;">
+              <span class="section-tag" style="color:#15803d;">Shift Schedule</span>
+              <h2>Flock Management Timetable</h2>
+              <p>Attendants operate on 3 structured shifts to maintain 24/7 welfare, feeding, and biosecurity across 6,000 birds.</p>
+            </div>
+
+            <div class="portal-resource-card" style="padding:1rem; overflow-x:auto;">
+              <table class="data-table-custom">
+                <thead>
+                  <tr>
+                    <th>Shift Window</th>
+                    <th>Lead Attendant</th>
+                    <th>Core Tasks</th>
+                    <th>Egg Collection Round</th>
+                    <th>Shift Status</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><strong>06:30 - 12:00 (Morning)</strong></td>
+                    <td>Chinedu Obi</td>
+                    <td>Mortality sweep, 700 kg feed distribution, drinker pressure check</td>
+                    <td><span class="badge-gold">Round 1 (08:30 AM) • 3,164 Eggs</span></td>
+                    <td><span class="status-pill-green">✓ Completed</span></td>
+                  </tr>
+                  <tr>
+                    <td><strong>12:00 - 17:30 (Afternoon)</strong></td>
+                    <td>Blessing Eze</td>
+                    <td>Heat stress monitoring, sick bird care, cold room stacking</td>
+                    <td><span class="badge-gold">Round 2 (02:30 PM) • 2,008 Eggs</span></td>
+                    <td><span class="status-pill-green">✓ Completed</span></td>
+                  </tr>
+                  <tr>
+                    <td><strong>17:30 - 20:30 (Evening)</strong></td>
+                    <td>Musa Ibrahim</td>
+                    <td>Final sweep, 15,000L reservoir valve check, pen door lockdown</td>
+                    <td>Final Tally & Storage Stack</td>
+                    <td><span class="status-pill-amber">Active Shift</span></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </section>
+
+          <!-- ==========================================
+               SECTION 3: OPERATIONS & RESOURCE LIBRARY
+               ========================================== -->
+          <section id="resource-library" style="margin-bottom:3.5rem;">
+            <div style="margin-bottom:1.5rem;">
+              <span class="section-tag" style="color:#15803d;">Standard Procedures</span>
+              <h2>Operations & SOP Library</h2>
+              <p>Approved farm standard operating procedures, biosecurity manuals, and downloadable templates.</p>
+            </div>
+
+            <div class="portal-resource-grid" style="display:grid; grid-template-columns:repeat(auto-fit, minmax(260px, 1fr)); gap:1rem;">
+              <div class="portal-resource-card" style="padding:1.25rem;">
+                <span class="status-pill-green">SOP-LAY-001</span>
+                <h3 style="font-size:1.05rem; margin:0.5rem 0;">Daily Layer House Management</h3>
+                <p style="font-size:0.8rem; color:var(--text-muted);">Inspection, feeding, water pressure, lighting photoperiod, and shift handover protocols.</p>
+                <div style="margin-top:1rem; border-top:1px solid var(--border); padding-top:0.75rem;">
+                  <button onclick="alert('Downloading SOP-LAY-001 PDF manual...');" class="btn btn-outline btn-sm btn-full">Download PDF</button>
+                </div>
+              </div>
+
+              <div class="portal-resource-card" style="padding:1.25rem;">
+                <span class="status-pill-green">SOP-LAY-002</span>
+                <h3 style="font-size:1.05rem; margin:0.5rem 0;">Egg Grading & Crate Traceability</h3>
+                <p style="font-size:0.8rem; color:var(--text-muted);">Hairline crack sorting, 30-egg pulp tray packing, cold storage, and B2B dispatch waybills.</p>
+                <div style="margin-top:1rem; border-top:1px solid var(--border); padding-top:0.75rem;">
+                  <button onclick="alert('Downloading SOP-LAY-002 PDF manual...');" class="btn btn-outline btn-sm btn-full">Download PDF</button>
+                </div>
+              </div>
+
+              <div class="portal-resource-card" style="padding:1.25rem;">
+                <span class="status-pill-green">SOP-BIO-001</span>
+                <h3 style="font-size:1.05rem; margin:0.5rem 0;">Gate 1 Biosecurity & Wheel Dip</h3>
+                <p style="font-size:0.8rem; color:var(--text-muted);">Truck tire disinfection, 48-hour poultry contact screening, and visitor registry rules.</p>
+                <div style="margin-top:1rem; border-top:1px solid var(--border); padding-top:0.75rem;">
+                  <button onclick="alert('Downloading SOP-BIO-001 PDF manual...');" class="btn btn-outline btn-sm btn-full">Download PDF</button>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <!-- ==========================================
+               SECTION 4: CORPORATE B2B SALES & INVOICING
+               ========================================== -->
+          <section id="b2b-sales" style="margin-bottom:3.5rem;">
+            <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:1rem; margin-bottom:1.5rem;">
+              <div>
+                <span class="section-tag" style="color:#15803d;">Commercial Hub</span>
+                <h2>Corporate B2B Orders & Waybills</h2>
+                <p>Bulk supply contracts, delivery invoices, and corporate receivables tracking.</p>
+              </div>
+              <button onclick="openModal('modalSalesOrder')" class="btn btn-primary btn-sm" style="background:#15803d;">+ Create B2B Order</button>
+            </div>
+
+            <div class="portal-resource-card" style="padding:1rem; overflow-x:auto;">
+              <table class="data-table-custom">
+                <thead>
+                  <tr>
+                    <th>Waybill #</th>
+                    <th>Date</th>
+                    <th>Corporate Client</th>
+                    <th>Crates</th>
+                    <th>Total Invoiced</th>
+                    <th>Payment Status</th>
+                    <th>Delivery Vehicle</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><strong>WB-PFV-2026-104</strong></td>
+                    <td>2026-08-18</td>
+                    <td><strong>Transcorp Hotels & Suites Ltd</strong></td>
+                    <td>120 Crates (3,600 eggs)</td>
+                    <td>₦516,000</td>
+                    <td><span class="status-pill-amber">14-Day Term Due</span></td>
+                    <td>Toyota Dyna (DLT-892-XA)</td>
+                  </tr>
+                  <tr>
+                    <td><strong>WB-PFV-2026-103</strong></td>
+                    <td>2026-08-17</td>
+                    <td><strong>Grand Delta Supermarkets Ltd</strong></td>
+                    <td>200 Crates (6,000 eggs)</td>
+                    <td>₦850,000</td>
+                    <td><span class="status-pill-green">✓ Paid in Full</span></td>
+                    <td>Isuzu Truck (ASB-441-XX)</td>
+                  </tr>
+                  <tr>
+                    <td><strong>WB-PFV-2026-102</strong></td>
+                    <td>2026-08-15</td>
+                    <td><strong>Royal Crown Confectioneries</strong></td>
+                    <td>150 Crates (4,500 eggs)</td>
+                    <td>₦630,000</td>
+                    <td><span class="status-pill-green">✓ Paid in Full</span></td>
+                    <td>Ford Transit (BEN-119-AA)</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </section>
+
+          <!-- ==========================================
+               SECTION 5: HEALTH, MORTALITY & SICK BAY
+               ========================================== -->
+          <section id="health-welfare" style="margin-bottom:3.5rem;">
+            <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:1rem; margin-bottom:1.5rem;">
+              <div>
+                <span class="section-tag" style="color:#15803d;">Veterinary Welfare</span>
+                <h2>Health, Mortality & Sick Bay Isolation</h2>
+                <p>Daily mortality logs with on-farm incineration and individual sick cage supportive therapy.</p>
+              </div>
+              <button onclick="openModal('modalMortality')" class="btn btn-outline btn-sm" style="color:#9f1239; border-color:#fca5a5;">☠️ Record Mortality</button>
+            </div>
+
+            <div class="portal-resource-card" style="padding:1rem; overflow-x:auto;">
+              <table class="data-table-custom">
+                <thead>
+                  <tr>
+                    <th>Date</th>
+                    <th>Cage Location</th>
+                    <th>Observed Symptoms</th>
+                    <th>Diagnosis</th>
+                    <th>Isolation Bay</th>
+                    <th>Prescribed Therapy</th>
+                    <th>Attendant</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>2026-08-19</td>
+                    <td><strong>Cage Tier 2-A4</strong></td>
+                    <td>Dullness, pale comb, reduced water intake</td>
+                    <td>Early respiratory stress</td>
+                    <td><span class="status-pill-amber">Sick Bay Pen S-1</span></td>
+                    <td>Oral Multivitamins + Electrolytes</td>
+                    <td>Chinedu Obi</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </section>
+
+          <!-- ==========================================
+               SECTION 6: FARM FINANCIALS & P&L
+               ========================================== -->
+          <section id="farm-financials" style="margin-bottom:3.5rem;">
+            <div style="margin-bottom:1.5rem;">
+              <span class="section-tag" style="color:#15803d;">Financial Management</span>
+              <h2>P&L Ledger & Operating Expenses</h2>
+              <p>General cost accounting, feed purchase vouchers, power diesel, and gross margin calculations.</p>
+            </div>
+
+            <div class="progress-metric-grid" style="margin-bottom:1.5rem;">
+              <article><span>TOTAL B2B REVENUE</span><strong>₦1,996,000</strong><small>470 Crates Dispatched</small></article>
+              <article><span>OPERATING EXPENSES</span><strong style="color:#9f1239;">₦6,745,000</strong><small>Feed, Fuel, Wages & Drugs</small></article>
+              <article><span>GROSS MARGIN</span><strong style="color:#15803d;">42.5%</strong><small>Egg Sales Margin</small></article>
+              <article><span>FEED COST SHARE</span><strong>68.5%</strong><small>Dominant Cost Driver</small></article>
+            </div>
+          </section>
+
+          <!-- ==========================================
+               SECTION 7: BIOSECURITY & GATE REGISTRY
+               ========================================== -->
+          <section id="biosecurity-section" style="margin-bottom:3.5rem;">
+            <div style="margin-bottom:1.5rem;">
+              <span class="section-tag" style="color:#15803d;">Gate Control</span>
+              <h2>Biosecurity & Vehicle Registry (SOP-BIO-001)</h2>
+              <p>Enforced 24/7 by Sgt. Joshua Garba & Sunday Alabi at Farm Gate 1.</p>
+            </div>
+
+            <div class="portal-resource-card" style="padding:1rem; overflow-x:auto;">
+              <table class="data-table-custom">
+                <thead>
+                  <tr>
+                    <th>Date & Time</th>
+                    <th>Visitor Name & Org</th>
+                    <th>Purpose of Visit</th>
+                    <th>Biosecurity Checks Passed</th>
+                    <th>Security Guard</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>2026-08-18 • 09:30 AM</td>
+                    <td><strong>Engr. Patrick Agbo (Delta Ministry of Ag)</strong></td>
+                    <td>State Biosecurity Audit</td>
+                    <td><span class="status-pill-green">✓ Wheel Spray • Boots • 48h Clear</span></td>
+                    <td>Sgt. Joshua Garba</td>
+                  </tr>
+                  <tr>
+                    <td>2026-08-17 • 02:00 PM</td>
+                    <td><strong>Gabriel Alonge (Transcorp Hotels)</strong></td>
+                    <td>B2B Egg Inspection & Dispatch</td>
+                    <td><span class="status-pill-green">✓ Wheel Spray • Depot Entry Only</span></td>
+                    <td>Sunday Alabi</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </section>
+
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ==========================================
+       MODAL: LOG EGG HARVEST
+       ========================================== -->
+  <div id="modalEggHarvest" class="modal-backdrop" style="position:fixed; inset:0; background:rgba(0,0,0,0.6); backdrop-filter:blur(4px); z-index:200; display:none; align-items:center; justify-content:center; padding:20px;">
+    <div class="portal-login-card" style="max-width:500px; width:100%; background:#fff; border-radius:14px; padding:2rem; box-shadow:var(--shadow-lg);">
+      <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:1.2rem;">
+        <h3 style="margin:0; font-size:1.2rem;">🥚 Log Twice-Daily Egg Harvest</h3>
+        <button onclick="closeModal('modalEggHarvest')" style="font-size:1.4rem; color:var(--text-muted); cursor:pointer;">&times;</button>
+      </div>
+
+      <form onsubmit="event.preventDefault(); alert('Egg harvest of 3,164 eggs saved. Added 105 trays to cold storage.'); closeModal('modalEggHarvest');">
+        <div class="form-group" style="margin-bottom:1rem;">
+          <label style="font-weight:700; font-size:0.85rem;">Collection Round</label>
+          <select class="form-input" style="width:100%;">
+            <option value="Morning">Morning Harvest (Round 1 - 08:30 AM)</option>
+            <option value="Afternoon">Afternoon Harvest (Round 2 - 02:30 PM)</option>
+          </select>
+        </div>
+
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:12px; margin-bottom:1rem;">
+          <div class="form-group">
+            <label style="font-weight:700; font-size:0.85rem; color:#15803d;">Grade A Good Eggs</label>
+            <input type="number" class="form-input" placeholder="e.g. 3120" required>
+          </div>
+          <div class="form-group">
+            <label style="font-weight:700; font-size:0.85rem; color:#b45309;">Cracked Eggs</label>
+            <input type="number" class="form-input" placeholder="e.g. 22" value="0">
+          </div>
+        </div>
+
+        <button type="submit" class="btn btn-primary btn-full" style="background:#15803d; margin-top:0.5rem;">Save Harvest Record</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- ==========================================
+       MODAL: RECORD MORTALITY
+       ========================================== -->
+  <div id="modalMortality" class="modal-backdrop" style="position:fixed; inset:0; background:rgba(0,0,0,0.6); backdrop-filter:blur(4px); z-index:200; display:none; align-items:center; justify-content:center; padding:20px;">
+    <div class="portal-login-card" style="max-width:480px; width:100%; background:#fff; border-radius:14px; padding:2rem; box-shadow:var(--shadow-lg);">
+      <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:1.2rem;">
+        <h3 style="margin:0; font-size:1.2rem; color:#9f1239;">☠️ Record Daily Mortality</h3>
+        <button onclick="closeModal('modalMortality')" style="font-size:1.4rem; color:var(--text-muted); cursor:pointer;">&times;</button>
+      </div>
+
+      <form onsubmit="event.preventDefault(); alert('Mortality logged. Transferred to on-farm incinerator.'); closeModal('modalMortality');">
+        <div class="form-group" style="margin-bottom:1rem;">
+          <label style="font-weight:700; font-size:0.85rem;">Dead Birds Count</label>
+          <input type="number" class="form-input" min="1" placeholder="e.g. 2" required>
+        </div>
+
+        <div class="form-group" style="margin-bottom:1.2rem;">
+          <label style="font-weight:700; font-size:0.85rem;">Suspected Cause</label>
+          <select class="form-input" style="width:100%;">
+            <option value="Natural cage fatigue">Natural cage fatigue</option>
+            <option value="Egg peritonitis">Egg peritonitis</option>
+            <option value="Vent pecking trauma">Vent pecking trauma</option>
+            <option value="Heat exhaustion">Asaba heat exhaustion</option>
+          </select>
+        </div>
+
+        <button type="submit" class="btn btn-primary btn-full" style="background:#9f1239;">Confirm Mortality & Bag for Incineration</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- ==========================================
+       MODAL: CREATE B2B SALES ORDER
+       ========================================== -->
+  <div id="modalSalesOrder" class="modal-backdrop" style="position:fixed; inset:0; background:rgba(0,0,0,0.6); backdrop-filter:blur(4px); z-index:200; display:none; align-items:center; justify-content:center; padding:20px;">
+    <div class="portal-login-card" style="max-width:500px; width:100%; background:#fff; border-radius:14px; padding:2rem; box-shadow:var(--shadow-lg);">
+      <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:1.2rem;">
+        <h3 style="margin:0; font-size:1.2rem;">💼 Create Corporate B2B Order</h3>
+        <button onclick="closeModal('modalSalesOrder')" style="font-size:1.4rem; color:var(--text-muted); cursor:pointer;">&times;</button>
+      </div>
+
+      <form onsubmit="event.preventDefault(); alert('Corporate Waybill generated. Security Gate Pass issued.'); closeModal('modalSalesOrder');">
+        <div class="form-group" style="margin-bottom:1rem;">
+          <label style="font-weight:700; font-size:0.85rem;">Corporate Client</label>
+          <select class="form-input" style="width:100%;">
+            <option value="Transcorp Hotels">Transcorp Hotels & Suites Ltd</option>
+            <option value="Grand Delta">Grand Delta Supermarkets Ltd</option>
+            <option value="Royal Crown">Royal Crown Confectioneries</option>
+          </select>
+        </div>
+
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:12px; margin-bottom:1.2rem;">
+          <div class="form-group">
+            <label style="font-weight:700; font-size:0.85rem;">Crates (30-Egg)</label>
+            <input type="number" class="form-input" placeholder="e.g. 100" required>
+          </div>
+          <div class="form-group">
+            <label style="font-weight:700; font-size:0.85rem;">Rate per Crate (₦)</label>
+            <input type="number" class="form-input" value="4300" required>
+          </div>
+        </div>
+
+        <button type="submit" class="btn btn-primary btn-full" style="background:#15803d;">Generate Waybill & Issue Gate Pass</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script>
+    const accessCodes = {
+      "PFV-MGR-2026": { name: "Mr. Adebayo Adeleke", role: "FARM MANAGER", badge: "FARM MANAGER", email: "manager@preciscofarms.com" },
+      "PFV-DIR-2026": { name: "Engr. Charles Chukwuma", role: "DIRECTOR / OWNER", badge: "DIRECTOR / OWNER", email: "charles@preciscofarms.com" },
+      "PFV-VET-2026": { name: "Dr. Emeka Okonkwo, DVM", role: "VETERINARY OFFICER", badge: "VETERINARY OFFICER", email: "vet@preciscofarms.com" },
+      "PFV-ATT-2026": { name: "Chinedu Obi", role: "POULTRY ATTENDANT", badge: "ATTENDANT (SHIFT 1)", email: "chinedu@preciscofarms.com" },
+      "PFV-SEC-2026": { name: "Sgt. Joshua Garba", role: "SECURITY OFFICER", badge: "GATE SECURITY", email: "security@preciscofarms.com" }
+    };
+
+    function handleStaffLogin() {
+      const codeInput = document.getElementById("accessCode").value.trim().toUpperCase();
+      const user = accessCodes[codeInput] || accessCodes["PFV-MGR-2026"];
+
+      // Update Dashboard Info
+      document.getElementById("studentName").innerText = user.name;
+      document.getElementById("studentPackageBadge").innerText = user.badge;
+
+      // Toggle Views (Exact TREV AI portal flow)
+      document.getElementById("portalLoginPanel").hidden = true;
+      document.getElementById("studentDashboard").hidden = false;
+
+      // Scroll to dashboard smoothly
+      document.getElementById("studentDashboard").scrollIntoView({ behavior: "smooth" });
+    }
+
+    function handleStaffLogout() {
+      document.getElementById("studentDashboard").hidden = true;
+      document.getElementById("portalLoginPanel").hidden = false;
+      document.getElementById("portalLoginPanel").scrollIntoView({ behavior: "smooth" });
+    }
+
+    function openModal(id) {
+      const el = document.getElementById(id);
+      if (el) el.style.display = "flex";
+    }
+
+    function closeModal(id) {
+      const el = document.getElementById(id);
+      if (el) el.style.display = "none";
+    }
+
+    // Auto-login on load for immediate preview delight
+    document.addEventListener("DOMContentLoaded", () => {
+      // Start in authenticated view so the user sees everything right away!
+      handleStaffLogin();
+    });
+  </script>
+</body>
+</html>

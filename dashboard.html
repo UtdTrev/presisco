@@ -1,0 +1,695 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Precisco Farm Ventures — Dashboard</title>
+    <link rel="stylesheet" href="css/styles.css" />
+  </head>
+  <body>
+    <div class="dashboard-wrapper">
+      
+    <aside class="sidebar">
+      <a href="index.html" class="brand-header">
+        <div class="brand-logo-icon">🌿</div>
+        <div class="brand-title-text">Precisco</div>
+      </a>
+
+      <!-- Role Switcher -->
+      <div style="background:#f8fafc; border:1px solid #edf2f7; padding:8px 12px; border-radius:14px;">
+        <span style="font-size:0.65rem; color:#64748b; font-family:var(--font-mono); font-weight:700; display:block; margin-bottom:4px;">LOGGED-IN USER ROLE:</span>
+        <select id="sidebarRoleSelect" onchange="farmStore.setCurrentUser(this.value);" style="font-size:0.75rem; padding:4px 8px; border-radius:8px;">
+          <option value="STF-MGR" selected>Mr. Adebayo (Farm Manager)</option>
+          <option value="STF-DIR">Engr. Charles (Director / Owner)</option>
+          <option value="STF-VET">Dr. Emeka (Veterinary Officer)</option>
+          <option value="STF-CON">Dr. Ifeoma (Consultant)</option>
+          <option value="STF-AT1">Chinedu Obi (Attendant Shift 1)</option>
+          <option value="STF-AT2">Blessing Eze (Attendant Shift 2)</option>
+          <option value="STF-SEC1">Sgt. Joshua (Security Officer)</option>
+        </select>
+      </div>
+
+      <div class="sidebar-group">
+        <div class="sidebar-group-title">MENU</div>
+    
+        <a href="dashboard.html" class="sidebar-nav-item active">
+          <div class="nav-left">
+            <span>📊</span>
+            <span>Dashboard</span>
+          </div>
+          
+        </a>
+        
+        <a href="sales.html" class="sidebar-nav-item ">
+          <div class="nav-left">
+            <span>💼</span>
+            <span>B2B Sales</span>
+          </div>
+          <span class="sidebar-count-badge">12+</span>
+        </a>
+        
+        <a href="operations.html" class="sidebar-nav-item ">
+          <div class="nav-left">
+            <span>📋</span>
+            <span>Shift Tasks</span>
+          </div>
+          
+        </a>
+        
+        <a href="eggs.html" class="sidebar-nav-item ">
+          <div class="nav-left">
+            <span>🥚</span>
+            <span>Harvest & Eggs</span>
+          </div>
+          
+        </a>
+        
+        <a href="flocks.html" class="sidebar-nav-item ">
+          <div class="nav-left">
+            <span>🐔</span>
+            <span>Flocks (6,000)</span>
+          </div>
+          
+        </a>
+        
+        <a href="houses.html" class="sidebar-nav-item ">
+          <div class="nav-left">
+            <span>🏠</span>
+            <span>House Climate</span>
+          </div>
+          
+        </a>
+        
+        <a href="reports.html" class="sidebar-nav-item ">
+          <div class="nav-left">
+            <span>📈</span>
+            <span>Analytics</span>
+          </div>
+          
+        </a>
+        
+        <a href="pages.html" class="sidebar-nav-item ">
+          <div class="nav-left">
+            <span>✦</span>
+            <span>All 16 Pages</span>
+          </div>
+          <span class="sidebar-count-badge">New</span>
+        </a>
+        
+      </div>
+
+      <div class="sidebar-group">
+        <div class="sidebar-group-title">GENERAL</div>
+    
+        <a href="financials.html" class="sidebar-nav-item ">
+          <div class="nav-left">
+            <span>💳</span>
+            <span>P&L Ledger</span>
+          </div>
+        </a>
+        
+        <a href="health.html" class="sidebar-nav-item ">
+          <div class="nav-left">
+            <span>🩺</span>
+            <span>Health & Sick</span>
+          </div>
+        </a>
+        
+        <a href="feed.html" class="sidebar-nav-item ">
+          <div class="nav-left">
+            <span>🌾</span>
+            <span>Feed & Water</span>
+          </div>
+        </a>
+        
+        <a href="inventory.html" class="sidebar-nav-item ">
+          <div class="nav-left">
+            <span>📦</span>
+            <span>Warehouse</span>
+          </div>
+        </a>
+        
+        <a href="biosecurity.html" class="sidebar-nav-item ">
+          <div class="nav-left">
+            <span>🛡️</span>
+            <span>Gate Security</span>
+          </div>
+        </a>
+        
+        <a href="settings.html" class="sidebar-nav-item ">
+          <div class="nav-left">
+            <span>⚙️</span>
+            <span>Settings</span>
+          </div>
+        </a>
+        
+      </div>
+
+      <!-- Donezo-style Mobile App Promo Card -->
+      <div class="sidebar-promo-card">
+        <div style="width:28px; height:28px; border-radius:50%; background:rgba(255,255,255,0.15); display:flex; align-items:center; justify-content:center; margin-bottom:8px; font-size:0.8rem;">📱</div>
+        <h4>Precisco Mobile</h4>
+        <p>Log egg runs & shift tasks directly on mobile</p>
+        <button class="sidebar-promo-btn" onclick="alert('Precisco Farm Attendant PWA Ready for Mobile install!');">Download App</button>
+      </div>
+    </aside>
+    
+      <div class="main-panel">
+        
+    <div class="top-navbar">
+      <!-- Search Task Pill (Donezo Style) -->
+      <div class="search-pill-box">
+        <span style="color:#94a3b8; font-size:0.9rem;">🔍</span>
+        <input type="text" placeholder="Search task, bird tag or order..." />
+        <span class="search-shortcut-badge">⌘F</span>
+      </div>
+
+      <!-- Right Profile & Notifications (Donezo Style) -->
+      <div class="top-navbar-right">
+        <button class="icon-round-btn" title="Messages" onclick="alert('No new shift handover messages.');">
+          ✉️
+        </button>
+
+        <a href="alerts.html" class="icon-round-btn" title="Notifications">
+          🔔
+          <span style="position:absolute; top:4px; right:4px; width:8px; height:8px; background:#ef4444; border-radius:50%;"></span>
+        </a>
+
+        <div class="user-profile-widget" onclick="openModal('modalRoleSwitcher');">
+          <div class="avatar-circle" id="navAvatar">AA</div>
+          <div class="user-info">
+            <span class="user-name" id="navUserName">Mr. Adebayo Adeleke</span>
+            <span class="user-email" id="navUserEmail">manager@preciscofarms.com</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+        <div class="page-content-wrapper">
+          
+<div style="display:flex; flex-direction:column; gap:24px;">
+  <!-- Dashboard Header Row -->
+  <div class="dashboard-header-row">
+    <div class="dashboard-header-title">
+      <h1>Dashboard</h1>
+      <p>Plan, prioritize, and accomplish your layer farm tasks with ease.</p>
+    </div>
+
+    <div class="dashboard-action-buttons">
+      <button onclick="openModal('modalEggHarvest')" class="btn-forest">
+        <span>+ Log Harvest</span>
+      </button>
+      <button onclick="openModal('modalSalesOrder')" class="btn-outline-pill">
+        <span>+ B2B Order</span>
+      </button>
+      <button onclick="window.print()" class="btn-outline-pill">
+        <span>Export Data</span>
+      </button>
+    </div>
+  </div>
+
+  <!-- 4 Metric Cards (1 Forest Green Solid Highlight + 3 White Cards) -->
+  <div class="metrics-row-4">
+    <!-- 1. Total Live Birds (Forest Green Highlight) -->
+    <div class="metric-box-donezo highlight-forest">
+      <div class="m-header-flex">
+        <span class="m-title">Total POL Birds</span>
+        <div class="m-arrow-btn">↗</div>
+      </div>
+      <div class="m-number">5,892</div>
+      <div class="m-footer-badge">
+        <span>↑</span> 98.2% Livability from arrival
+      </div>
+    </div>
+
+    <!-- 2. Harvest Today (White Card) -->
+    <div class="metric-box-donezo white-card">
+      <div class="m-header-flex">
+        <span class="m-title">Harvest Today</span>
+        <div class="m-arrow-btn">↗</div>
+      </div>
+      <div class="m-number">5,172</div>
+      <div class="m-footer-badge green-tag">
+        <span>↑</span> 172.4 Crates produced
+      </div>
+    </div>
+
+    <!-- 3. Hen-Day Rate (White Card) -->
+    <div class="metric-box-donezo white-card">
+      <div class="m-header-flex">
+        <span class="m-title">Hen-Day Laying</span>
+        <div class="m-arrow-btn">↗</div>
+      </div>
+      <div class="m-number">87.8%</div>
+      <div class="m-footer-badge green-tag">
+        <span>↑</span> Peak Target 88.5%
+      </div>
+    </div>
+
+    <!-- 4. Days of Feed (White Card) -->
+    <div class="metric-box-donezo white-card">
+      <div class="m-header-flex">
+        <span class="m-title">Days of Feed</span>
+        <div class="m-arrow-btn">↗</div>
+      </div>
+      <div class="m-number">6 Days</div>
+      <div class="m-footer-badge green-tag" style="background:#f1f5f9; color:#64748b;">
+        157 Bags Warehouse Buffer
+      </div>
+    </div>
+  </div>
+
+  <!-- Middle 3-Column Grid (Donezo Layout) -->
+  <div class="dashboard-middle-grid">
+    <!-- Card 1: Project / Laying Analytics Capsule Bar Chart -->
+    <div class="donezo-card">
+      <div class="card-header-donezo">
+        <h3>Laying Analytics</h3>
+      </div>
+
+      <div class="pill-chart-container">
+        <!-- Sun (Hatched) -->
+        <div class="pill-bar-col">
+          <div class="pill-bar hatched" style="height: 65px;"></div>
+          <span class="pill-bar-day">S</span>
+        </div>
+
+        <!-- Mon (Solid Green) -->
+        <div class="pill-bar-col">
+          <div class="pill-bar solid-green" style="height: 95px;"></div>
+          <span class="pill-bar-day">M</span>
+        </div>
+
+        <!-- Tue (Mint Green with Tooltip) -->
+        <div class="pill-bar-col">
+          <div class="pill-bar mint-green" style="height: 75px;">
+            <div class="pill-bar-tooltip">87.8%</div>
+          </div>
+          <span class="pill-bar-day">T</span>
+        </div>
+
+        <!-- Wed (Solid Green High) -->
+        <div class="pill-bar-col">
+          <div class="pill-bar solid-green" style="height: 105px;"></div>
+          <span class="pill-bar-day">W</span>
+        </div>
+
+        <!-- Thu (Hatched) -->
+        <div class="pill-bar-col">
+          <div class="pill-bar hatched" style="height: 60px;"></div>
+          <span class="pill-bar-day">T</span>
+        </div>
+
+        <!-- Fri (Hatched) -->
+        <div class="pill-bar-col">
+          <div class="pill-bar hatched" style="height: 70px;"></div>
+          <span class="pill-bar-day">F</span>
+        </div>
+
+        <!-- Sat (Hatched) -->
+        <div class="pill-bar-col">
+          <div class="pill-bar hatched" style="height: 80px;"></div>
+          <span class="pill-bar-day">S</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Card 2: Reminders (Dark Green Banner) -->
+    <div class="donezo-card">
+      <div class="card-header-donezo">
+        <h3>Reminders</h3>
+      </div>
+
+      <div style="display:flex; flex-direction:column; gap:8px;">
+        <h4 style="font-size:1.05rem; color:var(--text-main); font-weight:700; line-height:1.2;">
+          Morning Walkthrough & Heat Check
+        </h4>
+        <span style="font-size:0.75rem; color:var(--text-muted);">Time: 02.00 pm - 04.00 pm • Main House 1</span>
+      </div>
+
+      <a href="operations.html" class="reminders-meeting-card">
+        <div style="display:flex; align-items:center; gap:10px;">
+          <span style="font-size:1.2rem;">📋</span>
+          <div>
+            <h4 style="font-size:0.88rem; margin:0;">Check 8 Exhaust Fans</h4>
+            <p style="margin:0; font-size:0.72rem;">Asaba 29.6°C • Drinker 2.2 Bar</p>
+          </div>
+        </div>
+        <span style="font-size:0.8rem; font-weight:700; background:rgba(255,255,255,0.2); padding:4px 10px; border-radius:var(--radius-full);">Open &rarr;</span>
+      </a>
+    </div>
+
+    <!-- Card 3: Corporate Orders List -->
+    <div class="donezo-card">
+      <div class="card-header-donezo">
+        <h3>Corporate Orders</h3>
+        <button onclick="openModal('modalSalesOrder')" class="btn-outline-pill" style="padding:4px 12px; font-size:0.75rem;">+ New</button>
+      </div>
+
+      <div class="project-list-widget">
+        <div class="project-item-row">
+          <div style="display:flex; align-items:center; gap:10px;">
+            <div class="project-icon-box" style="background:#e0f2fe; color:#0284c7;">🏨</div>
+            <div>
+              <strong style="font-size:0.82rem; color:var(--text-main); display:block;">Transcorp Hotels (120 Crates)</strong>
+              <span style="font-size:0.72rem; color:var(--text-muted);">Due date: Aug 20, 2026</span>
+            </div>
+          </div>
+          <span class="status-pill pending" style="font-size:0.65rem;">14d Term</span>
+        </div>
+
+        <div class="project-item-row">
+          <div style="display:flex; align-items:center; gap:10px;">
+            <div class="project-icon-box" style="background:#dcfce7; color:#16a34a;">🛒</div>
+            <div>
+              <strong style="font-size:0.82rem; color:var(--text-main); display:block;">Grand Delta Supermarkets (200 Crates)</strong>
+              <span style="font-size:0.72rem; color:var(--text-muted);">Due date: Aug 22, 2026</span>
+            </div>
+          </div>
+          <span class="status-pill completed" style="font-size:0.65rem;">Paid</span>
+        </div>
+
+        <div class="project-item-row">
+          <div style="display:flex; align-items:center; gap:10px;">
+            <div class="project-icon-box" style="background:#fef3c7; color:#d97706;">🍞</div>
+            <div>
+              <strong style="font-size:0.82rem; color:var(--text-main); display:block;">Royal Crown Bakeries (150 Crates)</strong>
+              <span style="font-size:0.72rem; color:var(--text-muted);">Due date: Aug 25, 2026</span>
+            </div>
+          </div>
+          <span class="status-pill completed" style="font-size:0.65rem;">Paid</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bottom 3-Column Grid (Donezo Layout) -->
+  <div class="dashboard-bottom-grid">
+    <!-- Card 1: Team Collaboration -->
+    <div class="donezo-card">
+      <div class="card-header-donezo">
+        <h3>Team Collaboration</h3>
+        <button onclick="alert('Staff Duty Schedule active.');" class="btn-outline-pill" style="padding:4px 12px; font-size:0.75rem;">+ Add Member</button>
+      </div>
+
+      <div style="display:flex; flex-direction:column; gap:4px;">
+        <div class="team-member-row">
+          <div class="team-user-flex">
+            <div class="team-user-avatar" style="background:#fee2e2; color:#b91c1c;">CO</div>
+            <div>
+              <strong style="font-size:0.82rem; color:var(--text-main); display:block;">Chinedu Obi</strong>
+              <span style="font-size:0.72rem; color:var(--text-muted);">Shift 1: Morning 6,000 Layer Harvest</span>
+            </div>
+          </div>
+          <span class="status-pill completed">Completed</span>
+        </div>
+
+        <div class="team-member-row">
+          <div class="team-user-flex">
+            <div class="team-user-avatar" style="background:#dcfce7; color:#15803d;">BE</div>
+            <div>
+              <strong style="font-size:0.82rem; color:var(--text-main); display:block;">Blessing Eze</strong>
+              <span style="font-size:0.72rem; color:var(--text-muted);">Shift 2: Afternoon Egg Grading & Cold Room</span>
+            </div>
+          </div>
+          <span class="status-pill in-progress">In Progress</span>
+        </div>
+
+        <div class="team-member-row">
+          <div class="team-user-flex">
+            <div class="team-user-avatar" style="background:#e0e7ff; color:#4338ca;">MI</div>
+            <div>
+              <strong style="font-size:0.82rem; color:var(--text-main); display:block;">Musa Ibrahim</strong>
+              <span style="font-size:0.72rem; color:var(--text-muted);">Shift 3: Drinker Flushing & Evening Lock</span>
+            </div>
+          </div>
+          <span class="status-pill pending">Pending</span>
+        </div>
+
+        <div class="team-member-row">
+          <div class="team-user-flex">
+            <div class="team-user-avatar" style="background:#fef3c7; color:#b45309;">EO</div>
+            <div>
+              <strong style="font-size:0.82rem; color:var(--text-main); display:block;">Dr. Emeka Okonkwo</strong>
+              <span style="font-size:0.72rem; color:var(--text-muted);">Lead Vet: Sick Bay Pen S-1 Isolation</span>
+            </div>
+          </div>
+          <span class="status-pill in-progress">In Progress</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Card 2: Flock Production Progress (Semi-Circular Donut Meter) -->
+    <div class="donezo-card">
+      <div class="card-header-donezo">
+        <h3>Production Target</h3>
+      </div>
+
+      <div class="semi-circle-chart-box">
+        <!-- SVG Semi Circle Donut Gauge -->
+        <svg width="220" height="120" viewBox="0 0 220 120">
+          <!-- Background Arc (Hatched/Gray) -->
+          <path d="M 20 110 A 90 90 0 0 1 200 110" fill="none" stroke="#e2e8f0" stroke-width="24" stroke-linecap="round" />
+          <!-- Mint Arc Segment -->
+          <path d="M 20 110 A 90 90 0 0 1 180 60" fill="none" stroke="#34d399" stroke-width="24" stroke-linecap="round" stroke-dasharray="280" stroke-dashoffset="60" />
+          <!-- Dark Green Completed Segment -->
+          <path d="M 20 110 A 90 90 0 0 1 120 20" fill="none" stroke="#124e3f" stroke-width="24" stroke-linecap="round" />
+        </svg>
+
+        <div class="semi-circle-inner-value">
+          <div class="big-val">87.8%</div>
+          <div class="sub-val">Hen-Day Laying</div>
+        </div>
+      </div>
+
+      <div class="chart-legend-row">
+        <span><span class="legend-dot" style="background:#124e3f;"></span> Completed</span>
+        <span><span class="legend-dot" style="background:#34d399;"></span> In Progress</span>
+        <span><span class="legend-dot" style="background:#cbd5e1;"></span> Pending</span>
+      </div>
+    </div>
+
+    <!-- Card 3: Shift Time Tracker (Dark Forest Green Wave Widget) -->
+    <div class="time-tracker-card">
+      <div class="card-title">Shift Time Tracker</div>
+      
+      <div class="digital-time-display" id="liveTimeTrackerDisplay">
+        01:24:08
+      </div>
+
+      <div class="timer-controls-row">
+        <button class="timer-control-btn pause" onclick="window.toggleTimer();" title="Pause / Resume Shift Timer">
+          ⏸
+        </button>
+        <button class="timer-control-btn stop" onclick="window.stopTimer();" title="Stop & Log Shift Duration">
+          ⏹
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+        </div>
+      </div>
+      
+    <div class="floating-dock-donezo">
+      <a href="pages.html" class="btn-forest" style="padding:6px 14px; font-size:0.75rem;">✦ All 16 Pages</a>
+      <button onclick="openModal('modalEggHarvest')" class="btn-outline-pill" style="padding:6px 14px; font-size:0.75rem;">🥚 Egg Run</button>
+      <button onclick="openModal('modalSalesOrder')" class="btn-outline-pill" style="padding:6px 14px; font-size:0.75rem;">💼 B2B Waybill</button>
+      <button onclick="openModal('modalMortality')" class="btn-outline-pill" style="padding:6px 14px; font-size:0.75rem; color:#e11d48;">☠️ Mortality</button>
+      <a href="operations.html" class="btn-outline-pill" style="padding:6px 14px; font-size:0.75rem;">📋 Checklists</a>
+    </div>
+    
+      
+    <!-- Modal: Log Egg Harvest -->
+    <div id="modalEggHarvest" class="modal-backdrop">
+      <div class="modal-box">
+        <div class="modal-header">
+          <h3 class="modal-title">🥚 Log Twice-Daily Egg Harvest</h3>
+          <button class="modal-close-btn" onclick="closeModal('modalEggHarvest')">&times;</button>
+        </div>
+        <form onsubmit="event.preventDefault(); farmStore.addEggHarvest({
+          round: this.round.value,
+          good: this.good.value,
+          cracked: this.cracked.value,
+          broken: this.broken.value,
+          reject: this.reject.value
+        }); closeModal('modalEggHarvest'); window.location.reload();">
+          <div class="modal-body">
+            <div class="form-group">
+              <label class="form-label">Harvest Collection Round</label>
+              <select name="round">
+                <option value="Morning Harvest (Round 1)">Morning Harvest (Round 1 - 08:30 AM)</option>
+                <option value="Afternoon Harvest (Round 2)">Afternoon Harvest (Round 2 - 02:30 PM)</option>
+              </select>
+            </div>
+            <div class="form-row-2">
+              <div class="form-group">
+                <label class="form-label" style="color:var(--forest-dark);">✓ Grade A Marketable Eggs</label>
+                <input type="number" name="good" placeholder="e.g. 3100" required>
+              </div>
+              <div class="form-group">
+                <label class="form-label" style="color:var(--amber-dark);">⚠️ Hairline Cracked Eggs</label>
+                <input type="number" name="cracked" placeholder="e.g. 20" value="0">
+              </div>
+            </div>
+            <div class="form-row-2">
+              <div class="form-group">
+                <label class="form-label" style="color:var(--rose-dark);">✕ Broken / Leaking Eggs</label>
+                <input type="number" name="broken" placeholder="e.g. 5" value="0">
+              </div>
+              <div class="form-group">
+                <label class="form-label">🪶 Dirty / Rejects</label>
+                <input type="number" name="reject" placeholder="e.g. 10" value="0">
+              </div>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn-outline-pill" onclick="closeModal('modalEggHarvest')">Cancel</button>
+            <button type="submit" class="btn-forest">Save Harvest Record</button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <!-- Modal: Record Mortality -->
+    <div id="modalMortality" class="modal-backdrop">
+      <div class="modal-box">
+        <div class="modal-header">
+          <h3 class="modal-title" style="color:var(--rose-dark);">☠️ Record Daily Mortality</h3>
+          <button class="modal-close-btn" onclick="closeModal('modalMortality')">&times;</button>
+        </div>
+        <form onsubmit="event.preventDefault(); farmStore.addMortality({
+          count: this.count.value,
+          reason: this.reason.value
+        }); closeModal('modalMortality'); window.location.reload();">
+          <div class="modal-body">
+            <div class="form-row-2">
+              <div class="form-group">
+                <label class="form-label">Dead Birds Count</label>
+                <input type="number" name="count" min="1" placeholder="e.g. 2" required>
+              </div>
+              <div class="form-group">
+                <label class="form-label">Suspected Cause</label>
+                <select name="reason">
+                  <option value="Natural cage fatigue">Natural cage fatigue</option>
+                  <option value="Egg peritonitis">Egg peritonitis</option>
+                  <option value="Vent pecking trauma">Vent pecking trauma</option>
+                  <option value="Asaba heat exhaustion">Asaba heat exhaustion</option>
+                  <option value="Undetermined (Awaiting Vet)">Undetermined (Awaiting Vet)</option>
+                </select>
+              </div>
+            </div>
+            <div style="background:#fee2e2; padding:12px; border-radius:12px; font-size:0.75rem; color:#991b1b;">
+              <strong>SOP-BIO-004:</strong> Carcasses must be bagged immediately in biohazard polythene and incinerated.
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn-outline-pill" onclick="closeModal('modalMortality')">Cancel</button>
+            <button type="submit" class="btn-forest" style="background:var(--rose-dark);">Confirm Mortality</button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <!-- Modal: Corporate Sales Order -->
+    <div id="modalSalesOrder" class="modal-backdrop">
+      <div class="modal-box">
+        <div class="modal-header">
+          <h3 class="modal-title">💼 Create Corporate B2B Order & Waybill</h3>
+          <button class="modal-close-btn" onclick="closeModal('modalSalesOrder')">&times;</button>
+        </div>
+        <form onsubmit="event.preventDefault(); farmStore.addCorporateOrder({
+          customer: this.customer.value,
+          crates: this.crates.value,
+          unitPrice: this.unitPrice.value,
+          paid: this.paid.value,
+          vehicle: this.vehicle.value
+        }); closeModal('modalSalesOrder'); window.location.reload();">
+          <div class="modal-body">
+            <div class="form-group">
+              <label class="form-label">Corporate Client</label>
+              <select name="customer">
+                <option value="Transcorp Hotels & Suites Ltd">Transcorp Hotels & Suites Ltd</option>
+                <option value="Grand Delta Supermarkets Ltd">Grand Delta Supermarkets Ltd</option>
+                <option value="Royal Crown Confectioneries">Royal Crown Confectioneries</option>
+                <option value="Prime Catering & Offshore Services">Prime Catering & Offshore Services</option>
+              </select>
+            </div>
+            <div class="form-row-2">
+              <div class="form-group">
+                <label class="form-label">Crates (30-Egg Trays)</label>
+                <input type="number" name="crates" placeholder="e.g. 100" required>
+              </div>
+              <div class="form-group">
+                <label class="form-label">Rate per Crate (₦)</label>
+                <input type="number" name="unitPrice" value="4300" required>
+              </div>
+            </div>
+            <div class="form-row-2">
+              <div class="form-group">
+                <label class="form-label">Immediate Payment (₦)</label>
+                <input type="number" name="paid" value="0" placeholder="0 if 14-day invoice">
+              </div>
+              <div class="form-group">
+                <label class="form-label">Delivery Vehicle Reg #</label>
+                <input type="text" name="vehicle" value="Toyota Dyna (DLT-892-XA)" required>
+              </div>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn-outline-pill" onclick="closeModal('modalSalesOrder')">Cancel</button>
+            <button type="submit" class="btn-forest">Generate Waybill & Issue Gate Pass</button>
+          </div>
+        </form>
+      </div>
+    </div>
+    
+    </div>
+
+    <script src="js/app.js"></script>
+    <script>
+      // Personalization & Timer Sync
+      document.addEventListener("DOMContentLoaded", () => {
+        const curUser = farmStore.state.currentUser;
+        if (document.getElementById("navUserName")) document.getElementById("navUserName").innerText = curUser.name;
+        if (document.getElementById("navUserEmail")) document.getElementById("navUserEmail").innerText = (curUser.email || (curUser.name.toLowerCase().split(" ")[0] + "@preciscofarms.com"));
+        if (document.getElementById("navAvatar")) document.getElementById("navAvatar").innerText = curUser.name.split(" ").map(n => n[0]).slice(0, 2).join("");
+        if (document.getElementById("sidebarRoleSelect")) document.getElementById("sidebarRoleSelect").value = curUser.id;
+
+        // Digital Time Tracker Clock
+        let sec = 5048; // 01:24:08 baseline
+        let timerRunning = true;
+        const timeDisplay = document.getElementById("liveTimeTrackerDisplay");
+
+        function updateTimer() {
+          if (!timeDisplay) return;
+          let hrs = Math.floor(sec / 3600);
+          let mins = Math.floor((sec % 3600) / 60);
+          let s = sec % 60;
+          timeDisplay.innerText = 
+            String(hrs).padStart(2, '0') + ":" + 
+            String(mins).padStart(2, '0') + ":" + 
+            String(s).padStart(2, '0');
+        }
+
+        setInterval(() => {
+          if (timerRunning) {
+            sec++;
+            updateTimer();
+          }
+        }, 1000);
+
+        window.toggleTimer = () => {
+          timerRunning = !timerRunning;
+          alert(timerRunning ? 'Shift timer resumed.' : 'Shift timer paused.');
+        };
+
+        window.stopTimer = () => {
+          timerRunning = false;
+          alert('Shift duration logged: ' + timeDisplay.innerText);
+        };
+      });
+    </script>
+  </body>
+</html>
