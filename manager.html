@@ -2,64 +2,110 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
     <title>Precisco Farm Ventures — Farm Manager Command Portal</title>
     <link rel="stylesheet" href="css/styles.css" />
   </head>
-  <body style="background:#f4f6f8;">
-    
-    <header class="navbar" style="background:#ffffff; border-bottom:1px solid #e2e8f0; height:76px; display:flex; align-items:center; padding:0 28px; position:sticky; top:0; z-index:100; box-shadow:0 2px 10px rgba(0,0,0,0.03);">
-      <div style="max-width:1440px; width:100%; margin:0 auto; display:flex; justify-content:space-between; align-items:center;">
-        <div style="display:flex; align-items:center; gap:12px;">
-          <a href="dashboard.html" style="display:flex; align-items:center; gap:10px; text-decoration:none;">
-            <div style="width:38px; height:38px; border-radius:12px; background:#e6f4ea; border:2px solid #124e3f; display:flex; align-items:center; justify-content:center; color:#124e3f; font-size:1.2rem; font-weight:800;">🌿</div>
-            <div>
-              <h1 style="font-size:1.2rem; font-weight:800; color:#111827; margin:0; line-height:1.1;">Precisco <span style="color:#124e3f;">Farms</span></h1>
-              <span style="font-size:0.68rem; font-family:ui-monospace, monospace; color:#64748b; font-weight:700;">6,000 POL LAYERS • ASABA, DELTA STATE</span>
-            </div>
-          </a>
+  <body>
+    <div class="dashboard-wrapper">
+      <div class="main-panel">
+        
+    <header class="top-navbar">
+      <div style="display:flex; align-items:center; gap:10px;">
+        <button class="mobile-menu-btn" onclick="openMobileDrawer();" title="Open Mobile Navigation">
+          ☰
+        </button>
+        <a href="dashboard.html" style="display:flex; align-items:center; gap:8px; text-decoration:none;">
+          <div style="width:34px; height:34px; border-radius:10px; background:#e6f4ea; border:2px solid #124e3f; display:flex; align-items:center; justify-content:center; color:#124e3f; font-size:1.1rem; font-weight:800;">🌿</div>
+          <span style="font-size:1.1rem; font-weight:800; color:#111827; letter-spacing:-0.03em;">Precisco</span>
+        </a>
+      </div>
+
+      <div class="top-navbar-right">
+        <div style="background:#f8fafc; border:1px solid #e2e8f0; padding:4px 10px; border-radius:9999px; font-size:0.72rem; font-family:ui-monospace, monospace;" class="font-mono">
+          <span style="color:#d97706; font-weight:700;">☀️ 29.6°C</span>
+          <span style="color:#94a3b8; margin:0 2px;">|</span>
+          <span style="color:#15803d; font-weight:700;">Fans 7/8</span>
         </div>
 
-        <div style="display:flex; align-items:center; gap:14px;">
-          <div style="background:#f8fafc; border:1px solid #e2e8f0; padding:6px 14px; border-radius:9999px; font-size:0.75rem; font-family:ui-monospace, monospace;">
-            <span style="color:#d97706; font-weight:700;">☀️ Asaba: 29.6°C</span>
-            <span style="color:#94a3b8; margin:0 4px;">|</span>
-            <span style="color:#15803d; font-weight:700;">Fans 7/8</span>
+        <div class="user-profile-widget" onclick="openMobileDrawer();" title="Click to view staff details">
+          <div class="avatar-circle">AA</div>
+          <div class="user-info">
+            <span class="user-name">Mr. Adebayo Adeleke (Farm Manager)</span>
+            <span class="user-email">manager@preciscofarms.com</span>
           </div>
+        </div>
 
-          <div style="display:flex; align-items:center; gap:10px; padding:4px 8px; border-radius:9999px; background:#f8fafc; border:1px solid #e2e8f0;">
-            <div style="width:34px; height:34px; border-radius:50%; background:#124e3f; color:#ffffff; display:flex; align-items:center; justify-content:center; font-weight:800; font-size:0.85rem;">AA</div>
-            <div style="display:flex; flex-direction:column;">
-              <strong style="font-size:0.82rem; color:#111827; line-height:1.1;">Mr. Adebayo Adeleke (Farm Manager)</strong>
-              <span style="font-size:0.68rem; color:#64748b;">manager@preciscofarms.com</span>
-            </div>
+        <button onclick="farmStore.logout();" class="btn-outline-pill" style="padding:5px 10px; font-size:0.72rem; color:#e11d48; border-color:#fecaca;" title="Sign out of portal">
+          <span>Sign Out</span>
+        </button>
+      </div>
+    </header>
+
+    <!-- Slide-Out Mobile Navigation Drawer -->
+    <div id="mobileNavDrawer" class="mobile-nav-drawer" onclick="if(event.target === this) closeMobileDrawer();">
+      <div class="mobile-nav-content">
+        <div style="display:flex; justify-content:space-between; align-items:center; border-bottom:1px solid #edf2f7; padding-bottom:12px;">
+          <div style="display:flex; align-items:center; gap:8px;">
+            <span style="font-size:1.3rem;">🌿</span>
+            <strong style="font-size:1.05rem; color:var(--forest-dark);">Precisco Farms</strong>
           </div>
+          <button onclick="closeMobileDrawer();" style="font-size:1.4rem; color:#94a3b8;">&times;</button>
+        </div>
 
-          <button onclick="farmStore.logout();" class="btn-outline-pill" style="padding:6px 14px; font-size:0.75rem; color:#e11d48; border-color:#fecaca;" title="Sign out of your portal">
-            <span>Sign Out 🚪</span>
+        <div style="background:#f8fafc; padding:10px; border-radius:12px; border:1px solid #e2e8f0;">
+          <span style="font-size:0.65rem; color:#64748b; font-weight:700; display:block; margin-bottom:4px;">SWITCH PORTAL VIEW:</span>
+          <select id="mobileRoleSelect" onchange="farmStore.setCurrentUser(this.value);" style="font-size:0.8rem; padding:6px 10px;">
+            <option value="STF-DIR">Engr. Charles (Director / Owner)</option>
+            <option value="STF-MGR">Mr. Adebayo (Farm Manager)</option>
+            <option value="STF-VET">Dr. Emeka (Veterinary Officer)</option>
+            <option value="STF-CON">Dr. Ifeoma (Consultant)</option>
+            <option value="STF-AT1">Chinedu Obi (Attendant Shift 1)</option>
+            <option value="STF-SEC1">Sgt. Joshua (Security Officer)</option>
+            <option value="STF-DRV">Kenneth Obi (Logistics Driver)</option>
+          </select>
+        </div>
+
+        <div style="display:flex; flex-direction:column; gap:4px; font-size:0.88rem; font-weight:600;">
+          <a href="dashboard.html" class="sidebar-nav-item">📊 Dashboard</a>
+          <a href="director.html" class="sidebar-nav-item">👑 Director Portal</a>
+          <a href="manager.html" class="sidebar-nav-item">👔 Manager Portal</a>
+          <a href="vet.html" class="sidebar-nav-item">🩺 Vet Officer Portal</a>
+          <a href="attendant.html" class="sidebar-nav-item">🐔 Attendant Portal</a>
+          <a href="security.html" class="sidebar-nav-item">🛡️ Security Gate Portal</a>
+          <a href="driver.html" class="sidebar-nav-item">🚚 Delivery Driver Hub</a>
+          <a href="consultant.html" class="sidebar-nav-item">📊 Consultant Portal</a>
+          <a href="sales.html" class="sidebar-nav-item">💼 B2B Sales & Waybills</a>
+          <a href="operations.html" class="sidebar-nav-item">📋 Shift Checklists</a>
+          <a href="eggs.html" class="sidebar-nav-item">🥚 Twice-Daily Harvest</a>
+          <a href="pages.html" class="sidebar-nav-item" style="color:var(--forest-dark); font-weight:800;">✦ All 16 Pages Sitemap</a>
+        </div>
+
+        <div style="margin-top:auto; padding-top:12px; border-top:1px solid #edf2f7;">
+          <button onclick="farmStore.logout();" class="btn-forest" style="width:100%; background:#ef4444; justify-content:center;">
+            Sign Out of Portal
           </button>
         </div>
       </div>
-    </header>
+    </div>
     
-
-    <div style="max-width:1440px; margin:24px auto; padding:0 24px; display:flex; flex-direction:column; gap:24px;">
-      
-<div style="display:flex; flex-direction:column; gap:24px;">
+        <div class="page-content-wrapper">
+          
+<div style="display:flex; flex-direction:column; gap:20px;">
   <!-- Welcome Banner -->
-  <div style="background:linear-gradient(135deg, #124e3f, #1e705b); border-radius:24px; padding:28px 36px; color:#ffffff; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:20px; box-shadow:0 10px 30px rgba(18,78,63,0.15);">
+  <div style="background:linear-gradient(135deg, #124e3f, #1e705b); border-radius:20px; padding:22px 24px; color:#ffffff; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:16px;">
     <div>
-      <span style="background:#F2B705; color:#0a0a0a; font-size:0.75rem; font-family:ui-monospace, monospace; font-weight:800; padding:4px 12px; border-radius:9999px; text-transform:uppercase;">
-        ✦ FARM MANAGER OPERATIONAL COMMAND
+      <span style="background:#F2B705; color:#0a0a0a; font-size:0.7rem; font-family:ui-monospace, monospace; font-weight:800; padding:3px 10px; border-radius:9999px; text-transform:uppercase;">
+        ✦ FARM MANAGER COMMAND
       </span>
-      <h1 style="color:#ffffff; font-size:2.2rem; font-weight:800; margin:8px 0 4px; font-family:var(--font-display);">
+      <h1 style="color:#ffffff; font-size:1.8rem; font-weight:800; margin:6px 0 2px; font-family:var(--font-display);">
         Welcome, Mr. Adebayo Adeleke
       </h1>
-      <p style="color:#d1fae5; font-size:0.9rem;">6,000 POL Layers • Water:Feed Ratio (2.11:1) • Stock Reconciler • Egg Size Derivatives • Manure Waste Monitoring</p>
+      <p style="color:#d1fae5; font-size:0.85rem;">6,000 POL Layers • Water:Feed Ratio (2.11:1) • Stock Reconciler • Egg Size Derivatives</p>
     </div>
 
-    <div style="display:flex; gap:10px;">
-      <button onclick="farmStore.generateWhatsAppBriefing()" class="btn-forest" style="background:#25D366; color:#ffffff; font-weight:800;">📱 WhatsApp Daily Briefing</button>
+    <div style="display:flex; gap:8px; flex-wrap:wrap;">
+      <button onclick="farmStore.generateWhatsAppBriefing()" class="btn-forest" style="background:#25D366; color:#ffffff; font-weight:800;">📱 WhatsApp Daily Report</button>
       <button onclick="openModal('modalEggHarvest')" class="btn-forest" style="background:#34d399; color:#0d382d;">+ Log Graded Harvest</button>
       <button onclick="openModal('modalSalesOrder')" class="btn-outline-pill" style="background:rgba(255,255,255,0.15); color:#ffffff; border-color:rgba(255,255,255,0.3);">+ Issue B2B Waybill</button>
     </div>
@@ -78,7 +124,7 @@
       <div class="m-footer-badge green-tag">172.4 Crates (101 Large, 61 Med)</div>
     </div>
     <div class="metric-box-donezo white-card">
-      <div class="m-header-flex"><span class="m-title">Water-to-Feed Ratio</span><div class="m-arrow-btn">↗</div></div>
+      <div class="m-header-flex"><span class="m-title">Water:Feed Ratio</span><div class="m-arrow-btn">↗</div></div>
       <div class="m-number" style="color:#0891b2;">2.11 : 1</div>
       <div class="m-footer-badge green-tag">1,180L Water : 560kg Feed (Normal)</div>
     </div>
@@ -89,108 +135,107 @@
     </div>
   </div>
 
-  <!-- Feed Calculation Engine (80g - 100g Benchmark) -->
+  <!-- Feed Calculation Engine -->
   <div class="donezo-card">
     <div class="card-header-donezo">
       <h3>Feed Deduction Engine (80g - 100g Daily Requirement per Bird)</h3>
       <span class="status-pill completed">Live Flock: 5,892 Birds</span>
     </div>
 
-    <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap:14px; margin-top:8px;">
-      <div style="background:#f8fafc; border:1px solid #e2e8f0; padding:12px; border-radius:12px;">
-        <span style="font-size:0.75rem; color:#64748b; display:block;">Daily Consumption (95g)</span>
-        <strong style="font-size:1.3rem; color:#124e3f; display:block;">559.7 kg</strong>
-        <span style="font-size:0.7rem; color:#64748b;">22.4 Bags of 25kg</span>
+    <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap:10px; margin-top:6px;">
+      <div style="background:#f8fafc; border:1px solid #e2e8f0; padding:10px; border-radius:10px;">
+        <span style="font-size:0.7rem; color:#64748b; display:block;">Daily Consumption (95g)</span>
+        <strong style="font-size:1.2rem; color:#124e3f; display:block;">559.7 kg</strong>
+        <span style="font-size:0.65rem; color:#64748b;">22.4 Bags of 25kg</span>
       </div>
 
-      <div style="background:#f8fafc; border:1px solid #e2e8f0; padding:12px; border-radius:12px;">
-        <span style="font-size:0.75rem; color:#64748b; display:block;">Weekly Requirement</span>
-        <strong style="font-size:1.3rem; color:#124e3f; display:block;">3,918 kg</strong>
-        <span style="font-size:0.7rem; color:#64748b;">156.7 Bags (₦2.90M)</span>
+      <div style="background:#f8fafc; border:1px solid #e2e8f0; padding:10px; border-radius:10px;">
+        <span style="font-size:0.7rem; color:#64748b; display:block;">Weekly Requirement</span>
+        <strong style="font-size:1.2rem; color:#124e3f; display:block;">3,918 kg</strong>
+        <span style="font-size:0.65rem; color:#64748b;">156.7 Bags (₦2.90M)</span>
       </div>
 
-      <div style="background:#f8fafc; border:1px solid #e2e8f0; padding:12px; border-radius:12px;">
-        <span style="font-size:0.75rem; color:#64748b; display:block;">Monthly Requirement</span>
-        <strong style="font-size:1.3rem; color:#124e3f; display:block;">16,792 kg</strong>
-        <span style="font-size:0.7rem; color:#64748b;">671.7 Bags (₦12.42M)</span>
+      <div style="background:#f8fafc; border:1px solid #e2e8f0; padding:10px; border-radius:10px;">
+        <span style="font-size:0.7rem; color:#64748b; display:block;">Monthly Requirement</span>
+        <strong style="font-size:1.2rem; color:#124e3f; display:block;">16,792 kg</strong>
+        <span style="font-size:0.65rem; color:#64748b;">671.7 Bags (₦12.42M)</span>
       </div>
 
-      <div style="background:#f0fdf4; border:1px solid #bbf7d0; padding:12px; border-radius:12px;">
-        <span style="font-size:0.75rem; color:#166534; display:block;">Re-Order Level (ROL)</span>
-        <strong style="font-size:1.3rem; color:#15803d; display:block;">55 Bags</strong>
-        <span style="font-size:0.7rem; color:#166534;">MOQ: <strong>200 Bags</strong> • EOQ: <strong>553 Bags</strong></span>
+      <div style="background:#f0fdf4; border:1px solid #bbf7d0; padding:10px; border-radius:10px;">
+        <span style="font-size:0.7rem; color:#166534; display:block;">Re-Order Level (ROL)</span>
+        <strong style="font-size:1.2rem; color:#15803d; display:block;">55 Bags</strong>
+        <span style="font-size:0.65rem; color:#166534;">MOQ: <strong>200 Bags</strong> • EOQ: <strong>553 Bags</strong></span>
       </div>
     </div>
   </div>
 
-  <!-- Physical Stock Taking & Anti-Fraud Reconciler -->
+  <!-- Physical Stock Taking & Reconciler -->
   <div class="donezo-card">
     <div class="card-header-donezo">
       <h3>Daily Stock Taking & Anti-Fraud Reconciler</h3>
       <span class="status-pill completed">Audit Trail Active</span>
     </div>
 
-    <table class="data-table-custom">
-      <thead>
-        <tr>
-          <th>Stock Item</th>
-          <th>Opening Count</th>
-          <th>Received / Added</th>
-          <th>Issued to Pen</th>
-          <th>Physical Closing Count</th>
-          <th>Variance</th>
-          <th>Status</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td><strong>Layers Mash Phase 1 (25kg Bags)</strong></td>
-          <td>185 Bags</td>
-          <td>0 Bags</td>
-          <td>28 Bags (700 kg)</td>
-          <td><strong>157 Bags</strong></td>
-          <td style="color:#15803d; font-weight:700;">0 (No Leakage)</td>
-          <td><span class="status-pill-green">✓ Balanced</span></td>
-        </tr>
-        <tr>
-          <td><strong>Grade A Large Stored Crates</strong></td>
-          <td>189 Crates</td>
-          <td>+ 101 Crates</td>
-          <td>0 Dispatched</td>
-          <td><strong>290 Crates</strong></td>
-          <td style="color:#15803d; font-weight:700;">0 (Accurate)</td>
-          <td><span class="status-pill-green">✓ Balanced</span></td>
-        </tr>
-        <tr>
-          <td><strong>Grade A Medium Stored Crates</strong></td>
-          <td>104 Crates</td>
-          <td>+ 61 Crates</td>
-          <td>0 Dispatched</td>
-          <td><strong>165 Crates</strong></td>
-          <td style="color:#15803d; font-weight:700;">0 (Accurate)</td>
-          <td><span class="status-pill-green">✓ Balanced</span></td>
-        </tr>
-        <tr>
-          <td><strong>Dry Manure 50kg Sacks</strong></td>
-          <td>216 Bags</td>
-          <td>+ 24 Bags</td>
-          <td>0 Sold</td>
-          <td><strong>240 Bags</strong></td>
-          <td style="color:#15803d; font-weight:700;">0 (Accurate)</td>
-          <td><span class="status-pill-green">✓ Balanced</span></td>
-        </tr>
-      </tbody>
-    </table>
+    <div class="table-responsive">
+      <table class="data-table-custom">
+        <thead>
+          <tr>
+            <th>Stock Item</th>
+            <th>Opening</th>
+            <th>Issued</th>
+            <th>Physical Closing</th>
+            <th>Variance</th>
+            <th>Status</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Layers Mash (25kg Bags)</strong></td>
+            <td>185 Bags</td>
+            <td>28 Bags (700 kg)</td>
+            <td><strong>157 Bags</strong></td>
+            <td style="color:#15803d; font-weight:700;">0 (No Leakage)</td>
+            <td><span class="status-pill-green">✓ Balanced</span></td>
+          </tr>
+          <tr>
+            <td><strong>Grade A Large Stored Crates</strong></td>
+            <td>189 Crates</td>
+            <td>+ 101 Crates</td>
+            <td><strong>290 Crates</strong></td>
+            <td style="color:#15803d; font-weight:700;">0 (Accurate)</td>
+            <td><span class="status-pill-green">✓ Balanced</span></td>
+          </tr>
+          <tr>
+            <td><strong>Grade A Medium Stored Crates</strong></td>
+            <td>104 Crates</td>
+            <td>+ 61 Crates</td>
+            <td><strong>165 Crates</strong></td>
+            <td style="color:#15803d; font-weight:700;">0 (Accurate)</td>
+            <td><span class="status-pill-green">✓ Balanced</span></td>
+          </tr>
+          <tr>
+            <td><strong>Dry Manure 50kg Sacks</strong></td>
+            <td>216 Bags</td>
+            <td>+ 24 Bags</td>
+            <td><strong>240 Bags</strong></td>
+            <td style="color:#15803d; font-weight:700;">0 (Accurate)</td>
+            <td><span class="status-pill-green">✓ Balanced</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
   </div>
 </div>
 
+        </div>
+      </div>
     </div>
 
-    <!-- Modals with Egg Size Derivatives & Manure Loggers -->
+    <!-- Reusable Modals & Scripts -->
     <div id="modalEggHarvest" class="modal-backdrop">
-      <div class="modal-box" style="max-width:580px;">
+      <div class="modal-box">
         <div class="modal-header">
-          <h3 class="modal-title">🥚 Log Harvest with Egg Size Derivatives</h3>
+          <h3 class="modal-title">🥚 Log Harvest (Size Derivatives)</h3>
           <button class="modal-close-btn" onclick="closeModal('modalEggHarvest')">&times;</button>
         </div>
         <form onsubmit="event.preventDefault(); farmStore.addEggHarvest({
@@ -211,41 +256,41 @@
               </select>
             </div>
             
-            <span style="font-size:0.75rem; font-weight:700; color:var(--forest-dark); text-transform:uppercase;">1. Grade A Good Eggs (Size Breakdown)</span>
+            <span style="font-size:0.75rem; font-weight:700; color:var(--forest-dark); text-transform:uppercase;">1. Grade A Good Eggs</span>
             <div class="form-row-3">
               <div class="form-group">
                 <label class="form-label" style="color:var(--forest-dark);">Large (53-63g+)</label>
-                <input type="number" name="large" placeholder="e.g. 1850" required>
+                <input type="number" name="large" placeholder="1850" required>
               </div>
               <div class="form-group">
                 <label class="form-label" style="color:var(--forest-dark);">Medium (45-52g)</label>
-                <input type="number" name="medium" placeholder="e.g. 1120" required>
+                <input type="number" name="medium" placeholder="1120" required>
               </div>
               <div class="form-group">
-                <label class="form-label" style="color:var(--forest-dark);">Small Pullet (&lt;45g)</label>
-                <input type="number" name="small" placeholder="e.g. 150" value="0">
+                <label class="form-label" style="color:var(--forest-dark);">Small (&lt;45g)</label>
+                <input type="number" name="small" placeholder="150" value="0">
               </div>
             </div>
 
-            <span style="font-size:0.75rem; font-weight:700; color:var(--amber-dark); text-transform:uppercase; margin-top:8px;">2. Defective & Damaged Eggs</span>
+            <span style="font-size:0.75rem; font-weight:700; color:var(--amber-dark); text-transform:uppercase; margin-top:6px;">2. Damaged & Defects</span>
             <div class="form-row-3">
               <div class="form-group">
-                <label class="form-label" style="color:var(--amber-dark);">Hairline Cracked</label>
-                <input type="number" name="cracked" placeholder="e.g. 22" value="0">
+                <label class="form-label" style="color:var(--amber-dark);">Cracked</label>
+                <input type="number" name="cracked" placeholder="22" value="0">
               </div>
               <div class="form-group">
-                <label class="form-label" style="color:var(--rose-dark);">Broken / Leaking</label>
-                <input type="number" name="broken" placeholder="e.g. 8" value="0">
+                <label class="form-label" style="color:var(--rose-dark);">Broken</label>
+                <input type="number" name="broken" placeholder="8" value="0">
               </div>
               <div class="form-group">
-                <label class="form-label">Dirty / Stained</label>
-                <input type="number" name="reject" placeholder="e.g. 14" value="0">
+                <label class="form-label">Dirty</label>
+                <input type="number" name="reject" placeholder="14" value="0">
               </div>
             </div>
           </div>
           <div class="modal-footer">
             <button type="button" class="btn-outline-pill" onclick="closeModal('modalEggHarvest')">Cancel</button>
-            <button type="submit" class="btn-forest">Save Graded Harvest & Update Inventory</button>
+            <button type="submit" class="btn-forest">Save Harvest</button>
           </div>
         </form>
       </div>
@@ -275,17 +320,16 @@
                   <option value="Egg peritonitis">Egg peritonitis</option>
                   <option value="Vent pecking trauma">Vent pecking trauma</option>
                   <option value="Asaba heat exhaustion">Asaba heat exhaustion</option>
-                  <option value="Undetermined (Awaiting Vet)">Undetermined (Awaiting Vet)</option>
                 </select>
               </div>
             </div>
-            <div style="background:#fee2e2; padding:12px; border-radius:12px; font-size:0.75rem; color:#991b1b;">
-              <strong>SOP-BIO-004:</strong> Carcasses must be bagged immediately in biohazard polythene and incinerated on-farm.
+            <div style="background:#fee2e2; padding:10px; border-radius:10px; font-size:0.72rem; color:#991b1b;">
+              <strong>SOP-BIO-004:</strong> Carcasses must be bagged immediately and incinerated on-farm.
             </div>
           </div>
           <div class="modal-footer">
             <button type="button" class="btn-outline-pill" onclick="closeModal('modalMortality')">Cancel</button>
-            <button type="submit" class="btn-forest" style="background:var(--rose-dark);">Confirm Mortality</button>
+            <button type="submit" class="btn-forest" style="background:var(--rose-dark);">Confirm</button>
           </div>
         </form>
       </div>
@@ -295,7 +339,7 @@
     <div id="modalSalesOrder" class="modal-backdrop">
       <div class="modal-box">
         <div class="modal-header">
-          <h3 class="modal-title">💼 Create Corporate B2B Order & Waybill</h3>
+          <h3 class="modal-title">💼 Create Corporate B2B Order</h3>
           <button class="modal-close-btn" onclick="closeModal('modalSalesOrder')">&times;</button>
         </div>
         <form onsubmit="event.preventDefault(); farmStore.addCorporateOrder({
@@ -312,17 +356,16 @@
                 <option value="Transcorp Hotels & Suites Ltd">Transcorp Hotels & Suites Ltd (Large @ ₦4,500)</option>
                 <option value="Grand Delta Supermarkets Ltd">Grand Delta Supermarkets Ltd (Medium @ ₦4,300)</option>
                 <option value="Royal Crown Confectioneries">Royal Crown Confectioneries (Mixed @ ₦4,200)</option>
-                <option value="Prime Catering & Offshore Services">Prime Catering & Offshore Services</option>
               </select>
             </div>
             <div class="form-row-2">
               <div class="form-group">
                 <label class="form-label">Large Crates (53-63g+)</label>
-                <input type="number" name="cratesLarge" placeholder="e.g. 80" value="80">
+                <input type="number" name="cratesLarge" value="80">
               </div>
               <div class="form-group">
                 <label class="form-label">Medium Crates (45-52g)</label>
-                <input type="number" name="cratesMed" placeholder="e.g. 40" value="40">
+                <input type="number" name="cratesMed" value="40">
               </div>
             </div>
             <div class="form-row-2">
@@ -338,49 +381,30 @@
           </div>
           <div class="modal-footer">
             <button type="button" class="btn-outline-pill" onclick="closeModal('modalSalesOrder')">Cancel</button>
-            <button type="submit" class="btn-forest">Generate Waybill & Issue Gate Pass</button>
-          </div>
-        </form>
-      </div>
-    </div>
-
-    <!-- Modal: Log Manure Organic Waste -->
-    <div id="modalManureLog" class="modal-backdrop">
-      <div class="modal-box">
-        <div class="modal-header">
-          <h3 class="modal-title">💩 Log Manure Conveyor Waste / Fertilizer</h3>
-          <button class="modal-close-btn" onclick="closeModal('modalManureLog')">&times;</button>
-        </div>
-        <form onsubmit="event.preventDefault(); farmStore.addManureLog({
-          bags: this.bags.value,
-          moisture: this.moisture.value
-        }); closeModal('modalManureLog'); window.location.reload();">
-          <div class="modal-body">
-            <div class="form-row-2">
-              <div class="form-group">
-                <label class="form-label">50kg Sacks Bagged Today</label>
-                <input type="number" name="bags" value="24" required>
-              </div>
-              <div class="form-group">
-                <label class="form-label">Moisture Quality</label>
-                <select name="moisture">
-                  <option value="Conveyor Belt Dry">Conveyor Belt Dry (Premium Fertilizer)</option>
-                  <option value="Slightly Damp (Sun Drying)">Slightly Damp (Sun Drying Required)</option>
-                </select>
-              </div>
-            </div>
-            <div style="background:#ecfdf5; padding:12px; border-radius:12px; font-size:0.75rem; color:#065f46;">
-              <strong>Manure Revenue Benchmark:</strong> 24 bags @ ₦1,200 = <strong>₦28,800/day</strong> (~₦201,600/week) in commercial organic fertilizer sales!
-            </div>
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn-outline-pill" onclick="closeModal('modalManureLog')">Cancel</button>
-            <button type="submit" class="btn-forest">Record Manure Harvest</button>
+            <button type="submit" class="btn-forest">Issue Waybill</button>
           </div>
         </form>
       </div>
     </div>
 
     <script src="js/app.js"></script>
+    <script>
+      function openMobileDrawer() {
+        const el = document.getElementById("mobileNavDrawer");
+        if (el) el.classList.add("open");
+      }
+      function closeMobileDrawer() {
+        const el = document.getElementById("mobileNavDrawer");
+        if (el) el.classList.remove("open");
+      }
+
+      document.addEventListener("DOMContentLoaded", () => {
+        farmStore.checkAuthGuard();
+        if (document.getElementById("mobileRoleSelect")) {
+          const curUser = farmStore.state.currentUser;
+          if (curUser && curUser.id) document.getElementById("mobileRoleSelect").value = curUser.id;
+        }
+      });
+    </script>
   </body>
 </html>
