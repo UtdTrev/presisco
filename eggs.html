@@ -10,7 +10,7 @@
     <div class="dashboard-wrapper">
       
     <aside class="sidebar">
-      <a href="index.html" class="brand-header">
+      <a href="dashboard.html" class="brand-header">
         <div class="brand-logo-icon">🌿</div>
         <div class="brand-title-text">Precisco</div>
       </a>
@@ -143,9 +143,16 @@
           </div>
         </a>
         
+        <!-- Sign Out Link in Sidebar -->
+        <a href="javascript:void(0);" onclick="farmStore.logout();" class="sidebar-nav-item" style="color:#ef4444; margin-top:8px;">
+          <div class="nav-left">
+            <span>🚪</span>
+            <span>Sign Out</span>
+          </div>
+        </a>
       </div>
 
-      <!-- Donezo-style Mobile App Promo Card -->
+      <!-- Mobile App Promo Card -->
       <div class="sidebar-promo-card">
         <div style="width:28px; height:28px; border-radius:50%; background:rgba(255,255,255,0.15); display:flex; align-items:center; justify-content:center; margin-bottom:8px; font-size:0.8rem;">📱</div>
         <h4>Precisco Mobile</h4>
@@ -164,7 +171,7 @@
         <span class="search-shortcut-badge">⌘F</span>
       </div>
 
-      <!-- Right Profile & Notifications (Donezo Style) -->
+      <!-- Right Profile, Sign Out & Notifications -->
       <div class="top-navbar-right">
         <button class="icon-round-btn" title="Messages" onclick="alert('No new shift handover messages.');">
           ✉️
@@ -175,13 +182,17 @@
           <span style="position:absolute; top:4px; right:4px; width:8px; height:8px; background:#ef4444; border-radius:50%;"></span>
         </a>
 
-        <div class="user-profile-widget" onclick="openModal('modalRoleSwitcher');">
+        <div class="user-profile-widget" onclick="openModal('modalRoleSwitcher');" title="Click to Switch User Role">
           <div class="avatar-circle" id="navAvatar">AA</div>
           <div class="user-info">
             <span class="user-name" id="navUserName">Mr. Adebayo Adeleke</span>
             <span class="user-email" id="navUserEmail">manager@preciscofarms.com</span>
           </div>
         </div>
+
+        <button onclick="farmStore.logout();" class="btn-outline-pill" style="padding:6px 14px; font-size:0.75rem; color:#ef4444; border-color:#fecaca;" title="Sign Out of Portal">
+          <span>Sign Out</span>
+        </button>
       </div>
     </div>
     
@@ -190,85 +201,37 @@
 <div style="display:flex; flex-direction:column; gap:24px;">
   <div class="dashboard-header-row">
     <div class="dashboard-header-title">
-      <h1>Twice-Daily Harvest & Crate Grading</h1>
-      <p>Morning (08:30 AM) and Afternoon (02:30 PM) collections and 30-egg crate conversion.</p>
+      <h1>Twice-Daily Harvest & Egg Size Grading</h1>
+      <p>Grade A Large (53-63g+), Medium (45-52g), Small Pullet (&lt;45g), and Hairline Cracked segregation.</p>
     </div>
 
     <div class="dashboard-action-buttons">
-      <button onclick="openModal('modalEggHarvest')" class="btn-forest">+ Log Harvest Run</button>
-      <button onclick="exportTableToCSV('Egg_Harvest.csv', [['Date','Round','Good','Cracked','Total','Trays'],['2026-08-19','Round 1',3120,22,3164,105.4]])" class="btn-outline-pill">Export CSV</button>
+      <button onclick="openModal('modalEggHarvest')" class="btn-forest">+ Log Graded Harvest</button>
+      <button onclick="exportTableToCSV('Graded_Egg_Harvest.csv', [['Date','Round','Large','Medium','Small','Cracked','Total'],['2026-08-19','Round 1',1850,1120,150,22,3164]])" class="btn-outline-pill">Export CSV</button>
     </div>
   </div>
 
   <div class="metrics-row-4">
     <div class="metric-box-donezo highlight-forest">
-      <div class="m-header-flex"><span class="m-title">Total Today</span><div class="m-arrow-btn">↗</div></div>
-      <div class="m-number">5,172</div>
-      <div class="m-footer-badge">172.4 Crates Produced</div>
+      <div class="m-header-flex"><span class="m-title">Large Crates (53-63g+)</span><div class="m-arrow-btn">↗</div></div>
+      <div class="m-number">101.0 Cr</div>
+      <div class="m-footer-badge">Premium Hotel Rate ₦4,500/cr</div>
     </div>
     <div class="metric-box-donezo white-card">
-      <div class="m-header-flex"><span class="m-title">Grade A Marketable</span><div class="m-arrow-btn">↗</div></div>
-      <div class="m-number" style="color:#15803d;">5,100</div>
-      <div class="m-footer-badge green-tag">98.6% Marketability</div>
+      <div class="m-header-flex"><span class="m-title">Medium Crates (45-52g)</span><div class="m-arrow-btn">↗</div></div>
+      <div class="m-number" style="color:#15803d;">61.0 Cr</div>
+      <div class="m-footer-badge green-tag">Supermarket Rate ₦4,300/cr</div>
     </div>
     <div class="metric-box-donezo white-card">
-      <div class="m-header-flex"><span class="m-title">Hen-Day Laying</span><div class="m-arrow-btn">↗</div></div>
-      <div class="m-number">87.8%</div>
-      <div class="m-footer-badge green-tag">5,892 Live Hens</div>
+      <div class="m-header-flex"><span class="m-title">Small Pullet Crates</span><div class="m-arrow-btn">↗</div></div>
+      <div class="m-number" style="color:#d97706;">8.0 Cr</div>
+      <div class="m-footer-badge" style="background:#fef3c7; color:#b45309;">Bakery Rate ₦3,800/cr</div>
     </div>
     <div class="metric-box-donezo white-card">
       <div class="m-header-flex"><span class="m-title">Cracked / Rejects</span><div class="m-arrow-btn">↗</div></div>
-      <div class="m-number" style="color:#b91c1c;">72</div>
+      <div class="m-number" style="color:#b91c1c;">2.4 Cr</div>
       <div class="m-footer-badge" style="background:#fee2e2; color:#b91c1c;">Cracked: 37 • Broken: 12</div>
     </div>
-  </div>
-
-  <div class="data-table-container">
-    <div class="data-table-header">
-      <h3 style="font-size:1rem; font-weight:700;">Harvest Collection Logs</h3>
-    </div>
-    <table>
-      <thead>
-        <tr>
-          <th>Date & Time</th>
-          <th>Harvest Round</th>
-          <th>Grade A Good</th>
-          <th>Cracked</th>
-          <th>Broken</th>
-          <th>Rejects</th>
-          <th>Total Eggs</th>
-          <th>Trays (30-Egg)</th>
-          <th>Hen-Day %</th>
-          <th>Collector</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>2026-08-19 • 08:30 AM</td>
-          <td><strong>Morning Harvest (Round 1)</strong></td>
-          <td style="color:#15803d; font-weight:700;">3,120</td>
-          <td>22</td>
-          <td>8</td>
-          <td>14</td>
-          <td><strong>3,164</strong></td>
-          <td>105.4 Trays</td>
-          <td style="color:#15803d; font-weight:700;">53.7%</td>
-          <td>Chinedu Obi</td>
-        </tr>
-        <tr>
-          <td>2026-08-19 • 02:30 PM</td>
-          <td><strong>Afternoon Harvest (Round 2)</strong></td>
-          <td style="color:#15803d; font-weight:700;">1,980</td>
-          <td>15</td>
-          <td>4</td>
-          <td>9</td>
-          <td><strong>2,008</strong></td>
-          <td>66.9 Trays</td>
-          <td style="color:#15803d; font-weight:700;">87.8% (Comb)</td>
-          <td>Blessing Eze</td>
-        </tr>
-      </tbody>
-    </table>
   </div>
 </div>
 
@@ -432,8 +395,11 @@
 
     <script src="js/app.js"></script>
     <script>
-      // Personalization & Timer Sync
+      // Auth Guard & User Data Hydration
       document.addEventListener("DOMContentLoaded", () => {
+        // Enforce Login Guard
+        farmStore.checkAuthGuard();
+
         const curUser = farmStore.state.currentUser;
         if (document.getElementById("navUserName")) document.getElementById("navUserName").innerText = curUser.name;
         if (document.getElementById("navUserEmail")) document.getElementById("navUserEmail").innerText = (curUser.email || (curUser.name.toLowerCase().split(" ")[0] + "@preciscofarms.com"));
@@ -470,7 +436,7 @@
 
         window.stopTimer = () => {
           timerRunning = false;
-          alert('Shift duration logged: ' + timeDisplay.innerText);
+          alert('Shift duration logged: ' + (timeDisplay ? timeDisplay.innerText : '01:24:08'));
         };
       });
     </script>

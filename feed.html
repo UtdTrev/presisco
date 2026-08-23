@@ -10,7 +10,7 @@
     <div class="dashboard-wrapper">
       
     <aside class="sidebar">
-      <a href="index.html" class="brand-header">
+      <a href="dashboard.html" class="brand-header">
         <div class="brand-logo-icon">🌿</div>
         <div class="brand-title-text">Precisco</div>
       </a>
@@ -143,9 +143,16 @@
           </div>
         </a>
         
+        <!-- Sign Out Link in Sidebar -->
+        <a href="javascript:void(0);" onclick="farmStore.logout();" class="sidebar-nav-item" style="color:#ef4444; margin-top:8px;">
+          <div class="nav-left">
+            <span>🚪</span>
+            <span>Sign Out</span>
+          </div>
+        </a>
       </div>
 
-      <!-- Donezo-style Mobile App Promo Card -->
+      <!-- Mobile App Promo Card -->
       <div class="sidebar-promo-card">
         <div style="width:28px; height:28px; border-radius:50%; background:rgba(255,255,255,0.15); display:flex; align-items:center; justify-content:center; margin-bottom:8px; font-size:0.8rem;">📱</div>
         <h4>Precisco Mobile</h4>
@@ -164,7 +171,7 @@
         <span class="search-shortcut-badge">⌘F</span>
       </div>
 
-      <!-- Right Profile & Notifications (Donezo Style) -->
+      <!-- Right Profile, Sign Out & Notifications -->
       <div class="top-navbar-right">
         <button class="icon-round-btn" title="Messages" onclick="alert('No new shift handover messages.');">
           ✉️
@@ -175,13 +182,17 @@
           <span style="position:absolute; top:4px; right:4px; width:8px; height:8px; background:#ef4444; border-radius:50%;"></span>
         </a>
 
-        <div class="user-profile-widget" onclick="openModal('modalRoleSwitcher');">
+        <div class="user-profile-widget" onclick="openModal('modalRoleSwitcher');" title="Click to Switch User Role">
           <div class="avatar-circle" id="navAvatar">AA</div>
           <div class="user-info">
             <span class="user-name" id="navUserName">Mr. Adebayo Adeleke</span>
             <span class="user-email" id="navUserEmail">manager@preciscofarms.com</span>
           </div>
         </div>
+
+        <button onclick="farmStore.logout();" class="btn-outline-pill" style="padding:6px 14px; font-size:0.75rem; color:#ef4444; border-color:#fecaca;" title="Sign Out of Portal">
+          <span>Sign Out</span>
+        </button>
       </div>
     </div>
     
@@ -190,31 +201,31 @@
 <div style="display:flex; flex-direction:column; gap:24px;">
   <div class="dashboard-header-row">
     <div class="dashboard-header-title">
-      <h1>Feed Intake & Water Line System</h1>
-      <p>Daily feed consumption vs 118g benchmark for 6,000 birds and Days-of-Feed forecast.</p>
+      <h1>Feed Intake & Inventory Optimization (EOQ/ROL)</h1>
+      <p>Deduction engine based on 80g - 100g intake per bird for 5,892 mature layers.</p>
     </div>
   </div>
 
   <div class="metrics-row-4">
     <div class="metric-box-donezo highlight-forest">
-      <div class="m-header-flex"><span class="m-title">Consumed Today</span><div class="m-arrow-btn">↗</div></div>
-      <div class="m-number">685 kg</div>
-      <div class="m-footer-badge">Issued 700 kg • Left 15 kg</div>
+      <div class="m-header-flex"><span class="m-title">Daily Consumption</span><div class="m-arrow-btn">↗</div></div>
+      <div class="m-number">559.7 kg</div>
+      <div class="m-footer-badge">22.4 Bags/day @ 95g/bird</div>
     </div>
     <div class="metric-box-donezo white-card">
-      <div class="m-header-flex"><span class="m-title">Actual Intake</span><div class="m-arrow-btn">↗</div></div>
-      <div class="m-number">116.3 g</div>
-      <div class="m-footer-badge green-tag">Target: 118g Optimal</div>
+      <div class="m-header-flex"><span class="m-title">Weekly Requirement</span><div class="m-arrow-btn">↗</div></div>
+      <div class="m-number" style="color:#124e3f;">3,918 kg</div>
+      <div class="m-footer-badge green-tag">156.7 Bags (₦2.90M)</div>
     </div>
     <div class="metric-box-donezo white-card">
-      <div class="m-header-flex"><span class="m-title">Warehouse Stock</span><div class="m-arrow-btn">↗</div></div>
-      <div class="m-number">157 Bags</div>
-      <div class="m-footer-badge green-tag">25kg Layers Mash</div>
+      <div class="m-header-flex"><span class="m-title">Monthly Total</span><div class="m-arrow-btn">↗</div></div>
+      <div class="m-number" style="color:#124e3f;">16,792 kg</div>
+      <div class="m-footer-badge green-tag">671.7 Bags (₦12.42M)</div>
     </div>
     <div class="metric-box-donezo white-card">
-      <div class="m-header-flex"><span class="m-title">Days Remaining</span><div class="m-arrow-btn">↗</div></div>
-      <div class="m-number">6 Days</div>
-      <div class="m-footer-badge green-tag">Safe Buffer (>5d)</div>
+      <div class="m-header-flex"><span class="m-title">Economic Order (EOQ)</span><div class="m-arrow-btn">↗</div></div>
+      <div class="m-number" style="color:#15803d;">553 Bags</div>
+      <div class="m-footer-badge green-tag">ROL: 55 Bags • MOQ: 200 Bags</div>
     </div>
   </div>
 </div>
@@ -379,8 +390,11 @@
 
     <script src="js/app.js"></script>
     <script>
-      // Personalization & Timer Sync
+      // Auth Guard & User Data Hydration
       document.addEventListener("DOMContentLoaded", () => {
+        // Enforce Login Guard
+        farmStore.checkAuthGuard();
+
         const curUser = farmStore.state.currentUser;
         if (document.getElementById("navUserName")) document.getElementById("navUserName").innerText = curUser.name;
         if (document.getElementById("navUserEmail")) document.getElementById("navUserEmail").innerText = (curUser.email || (curUser.name.toLowerCase().split(" ")[0] + "@preciscofarms.com"));
@@ -417,7 +431,7 @@
 
         window.stopTimer = () => {
           timerRunning = false;
-          alert('Shift duration logged: ' + timeDisplay.innerText);
+          alert('Shift duration logged: ' + (timeDisplay ? timeDisplay.innerText : '01:24:08'));
         };
       });
     </script>

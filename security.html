@@ -1,0 +1,301 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Precisco Farm Ventures — Security Officers Portal</title>
+    <link rel="stylesheet" href="css/styles.css" />
+  </head>
+  <body style="background:#f4f6f8;">
+    
+    <header class="navbar" style="background:#ffffff; border-bottom:1px solid #e2e8f0; height:76px; display:flex; align-items:center; padding:0 28px; position:sticky; top:0; z-index:100; box-shadow:0 2px 10px rgba(0,0,0,0.03);">
+      <div style="max-width:1440px; width:100%; margin:0 auto; display:flex; justify-content:space-between; align-items:center;">
+        <div style="display:flex; align-items:center; gap:12px;">
+          <a href="dashboard.html" style="display:flex; align-items:center; gap:10px; text-decoration:none;">
+            <div style="width:38px; height:38px; border-radius:12px; background:#e6f4ea; border:2px solid #124e3f; display:flex; align-items:center; justify-content:center; color:#124e3f; font-size:1.2rem; font-weight:800;">🌿</div>
+            <div>
+              <h1 style="font-size:1.2rem; font-weight:800; color:#111827; margin:0; line-height:1.1;">Precisco <span style="color:#124e3f;">Farms</span></h1>
+              <span style="font-size:0.68rem; font-family:ui-monospace, monospace; color:#64748b; font-weight:700;">6,000 POL LAYERS • ASABA, DELTA STATE</span>
+            </div>
+          </a>
+        </div>
+
+        <div style="display:flex; align-items:center; gap:14px;">
+          <div style="background:#f8fafc; border:1px solid #e2e8f0; padding:6px 14px; border-radius:9999px; font-size:0.75rem; font-family:ui-monospace, monospace;">
+            <span style="color:#d97706; font-weight:700;">☀️ Asaba: 29.6°C</span>
+            <span style="color:#94a3b8; margin:0 4px;">|</span>
+            <span style="color:#15803d; font-weight:700;">Fans 7/8</span>
+          </div>
+
+          <div style="display:flex; align-items:center; gap:10px; padding:4px 8px; border-radius:9999px; background:#f8fafc; border:1px solid #e2e8f0;">
+            <div style="width:34px; height:34px; border-radius:50%; background:#124e3f; color:#ffffff; display:flex; align-items:center; justify-content:center; font-weight:800; font-size:0.85rem;">JG</div>
+            <div style="display:flex; flex-direction:column;">
+              <strong style="font-size:0.82rem; color:#111827; line-height:1.1;">Sgt. Joshua Garba (Security Officer)</strong>
+              <span style="font-size:0.68rem; color:#64748b;">security@preciscofarms.com</span>
+            </div>
+          </div>
+
+          <button onclick="farmStore.logout();" class="btn-outline-pill" style="padding:6px 14px; font-size:0.75rem; color:#e11d48; border-color:#fecaca;" title="Sign out of your portal">
+            <span>Sign Out 🚪</span>
+          </button>
+        </div>
+      </div>
+    </header>
+    
+
+    <div style="max-width:1440px; margin:24px auto; padding:0 24px; display:flex; flex-direction:column; gap:24px;">
+      
+<div style="display:flex; flex-direction:column; gap:24px;">
+  <div style="background:linear-gradient(135deg, #1e293b, #0f172a); border-radius:24px; padding:24px 32px; color:#ffffff; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:16px;">
+    <div>
+      <span style="background:rgba(255,255,255,0.15); color:#94a3b8; font-size:0.75rem; font-family:ui-monospace, monospace; font-weight:800; padding:4px 12px; border-radius:9999px;">
+        🛡️ GATE 1 & GATE 2 SECURITY DESK
+      </span>
+      <h1 style="color:#ffffff; font-size:2rem; font-weight:800; margin:6px 0 2px; font-family:var(--font-display);">
+        Security Gate Registry & Disinfection
+      </h1>
+      <p style="color:#94a3b8; font-size:0.85rem;">Truck Wheel Spray Dip • 48-Hour Contact Screening • Outbound Delivery Gate Passes</p>
+    </div>
+
+    <button onclick="alert('New visitor entry recorded at Gate 1.');" class="btn-forest" style="background:#15803d; color:#fff;">+ Register Entry</button>
+  </div>
+
+  <div class="donezo-card">
+    <div class="card-header-donezo">
+      <h3>Gate 1 Vehicle Wheel Dip & Visitor Entry Registry</h3>
+      <span class="status-pill completed">Virkon-S 1% Active</span>
+    </div>
+
+    <table class="data-table-custom">
+      <thead>
+        <tr>
+          <th>Time In</th>
+          <th>Visitor Name & Org</th>
+          <th>Vehicle Reg #</th>
+          <th>Purpose of Entry</th>
+          <th>Biosecurity Disinfection Passed</th>
+          <th>Security Guard</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>09:30 AM</td>
+          <td><strong>Engr. Patrick Agbo (Delta Ministry of Ag)</strong></td>
+          <td>Gov Prado (DT-01-AGR)</td>
+          <td>Biosecurity Audit</td>
+          <td><span class="status-pill-green">✓ Wheel Spray • Boots • 48h Clear</span></td>
+          <td>Sgt. Joshua Garba</td>
+        </tr>
+        <tr>
+          <td>02:00 PM</td>
+          <td><strong>Kenneth Obi (Corporate Logistics)</strong></td>
+          <td>Toyota Dyna (DLT-892-XA)</td>
+          <td>B2B Egg Dispatch (120 Crates)</td>
+          <td><span class="status-pill-green">✓ Gate Pass #PASS-0818-01 Verified</span></td>
+          <td>Sunday Alabi</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+    </div>
+
+    <!-- Modals with Egg Size Derivatives & Manure Loggers -->
+    <div id="modalEggHarvest" class="modal-backdrop">
+      <div class="modal-box" style="max-width:580px;">
+        <div class="modal-header">
+          <h3 class="modal-title">🥚 Log Harvest with Egg Size Derivatives</h3>
+          <button class="modal-close-btn" onclick="closeModal('modalEggHarvest')">&times;</button>
+        </div>
+        <form onsubmit="event.preventDefault(); farmStore.addEggHarvest({
+          round: this.round.value,
+          large: this.large.value,
+          medium: this.medium.value,
+          small: this.small.value,
+          cracked: this.cracked.value,
+          broken: this.broken.value,
+          reject: this.reject.value
+        }); closeModal('modalEggHarvest'); window.location.reload();">
+          <div class="modal-body">
+            <div class="form-group">
+              <label class="form-label">Harvest Collection Round</label>
+              <select name="round">
+                <option value="Morning Harvest (Round 1)">Morning Harvest (Round 1 - 08:30 AM)</option>
+                <option value="Afternoon Harvest (Round 2)">Afternoon Harvest (Round 2 - 02:30 PM)</option>
+              </select>
+            </div>
+            
+            <span style="font-size:0.75rem; font-weight:700; color:var(--forest-dark); text-transform:uppercase;">1. Grade A Good Eggs (Size Breakdown)</span>
+            <div class="form-row-3">
+              <div class="form-group">
+                <label class="form-label" style="color:var(--forest-dark);">Large (53-63g+)</label>
+                <input type="number" name="large" placeholder="e.g. 1850" required>
+              </div>
+              <div class="form-group">
+                <label class="form-label" style="color:var(--forest-dark);">Medium (45-52g)</label>
+                <input type="number" name="medium" placeholder="e.g. 1120" required>
+              </div>
+              <div class="form-group">
+                <label class="form-label" style="color:var(--forest-dark);">Small Pullet (&lt;45g)</label>
+                <input type="number" name="small" placeholder="e.g. 150" value="0">
+              </div>
+            </div>
+
+            <span style="font-size:0.75rem; font-weight:700; color:var(--amber-dark); text-transform:uppercase; margin-top:8px;">2. Defective & Damaged Eggs</span>
+            <div class="form-row-3">
+              <div class="form-group">
+                <label class="form-label" style="color:var(--amber-dark);">Hairline Cracked</label>
+                <input type="number" name="cracked" placeholder="e.g. 22" value="0">
+              </div>
+              <div class="form-group">
+                <label class="form-label" style="color:var(--rose-dark);">Broken / Leaking</label>
+                <input type="number" name="broken" placeholder="e.g. 8" value="0">
+              </div>
+              <div class="form-group">
+                <label class="form-label">Dirty / Stained</label>
+                <input type="number" name="reject" placeholder="e.g. 14" value="0">
+              </div>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn-outline-pill" onclick="closeModal('modalEggHarvest')">Cancel</button>
+            <button type="submit" class="btn-forest">Save Graded Harvest & Update Inventory</button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <!-- Modal: Record Mortality -->
+    <div id="modalMortality" class="modal-backdrop">
+      <div class="modal-box">
+        <div class="modal-header">
+          <h3 class="modal-title" style="color:var(--rose-dark);">☠️ Record Daily Mortality</h3>
+          <button class="modal-close-btn" onclick="closeModal('modalMortality')">&times;</button>
+        </div>
+        <form onsubmit="event.preventDefault(); farmStore.addMortality({
+          count: this.count.value,
+          reason: this.reason.value
+        }); closeModal('modalMortality'); window.location.reload();">
+          <div class="modal-body">
+            <div class="form-row-2">
+              <div class="form-group">
+                <label class="form-label">Dead Birds Count</label>
+                <input type="number" name="count" min="1" placeholder="e.g. 2" required>
+              </div>
+              <div class="form-group">
+                <label class="form-label">Suspected Cause</label>
+                <select name="reason">
+                  <option value="Natural cage fatigue">Natural cage fatigue</option>
+                  <option value="Egg peritonitis">Egg peritonitis</option>
+                  <option value="Vent pecking trauma">Vent pecking trauma</option>
+                  <option value="Asaba heat exhaustion">Asaba heat exhaustion</option>
+                  <option value="Undetermined (Awaiting Vet)">Undetermined (Awaiting Vet)</option>
+                </select>
+              </div>
+            </div>
+            <div style="background:#fee2e2; padding:12px; border-radius:12px; font-size:0.75rem; color:#991b1b;">
+              <strong>SOP-BIO-004:</strong> Carcasses must be bagged immediately in biohazard polythene and incinerated on-farm.
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn-outline-pill" onclick="closeModal('modalMortality')">Cancel</button>
+            <button type="submit" class="btn-forest" style="background:var(--rose-dark);">Confirm Mortality</button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <!-- Modal: Corporate Sales Order -->
+    <div id="modalSalesOrder" class="modal-backdrop">
+      <div class="modal-box">
+        <div class="modal-header">
+          <h3 class="modal-title">💼 Create Corporate B2B Order & Waybill</h3>
+          <button class="modal-close-btn" onclick="closeModal('modalSalesOrder')">&times;</button>
+        </div>
+        <form onsubmit="event.preventDefault(); farmStore.addCorporateOrder({
+          customer: this.customer.value,
+          cratesLarge: this.cratesLarge.value,
+          cratesMed: this.cratesMed.value,
+          paid: this.paid.value,
+          vehicle: this.vehicle.value
+        }); closeModal('modalSalesOrder'); window.location.reload();">
+          <div class="modal-body">
+            <div class="form-group">
+              <label class="form-label">Corporate Client</label>
+              <select name="customer">
+                <option value="Transcorp Hotels & Suites Ltd">Transcorp Hotels & Suites Ltd (Large @ ₦4,500)</option>
+                <option value="Grand Delta Supermarkets Ltd">Grand Delta Supermarkets Ltd (Medium @ ₦4,300)</option>
+                <option value="Royal Crown Confectioneries">Royal Crown Confectioneries (Mixed @ ₦4,200)</option>
+                <option value="Prime Catering & Offshore Services">Prime Catering & Offshore Services</option>
+              </select>
+            </div>
+            <div class="form-row-2">
+              <div class="form-group">
+                <label class="form-label">Large Crates (53-63g+)</label>
+                <input type="number" name="cratesLarge" placeholder="e.g. 80" value="80">
+              </div>
+              <div class="form-group">
+                <label class="form-label">Medium Crates (45-52g)</label>
+                <input type="number" name="cratesMed" placeholder="e.g. 40" value="40">
+              </div>
+            </div>
+            <div class="form-row-2">
+              <div class="form-group">
+                <label class="form-label">Immediate Payment (₦)</label>
+                <input type="number" name="paid" value="0" placeholder="0 if 14-day invoice">
+              </div>
+              <div class="form-group">
+                <label class="form-label">Delivery Vehicle Reg #</label>
+                <input type="text" name="vehicle" value="Toyota Dyna (DLT-892-XA)" required>
+              </div>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn-outline-pill" onclick="closeModal('modalSalesOrder')">Cancel</button>
+            <button type="submit" class="btn-forest">Generate Waybill & Issue Gate Pass</button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <!-- Modal: Log Manure Organic Waste -->
+    <div id="modalManureLog" class="modal-backdrop">
+      <div class="modal-box">
+        <div class="modal-header">
+          <h3 class="modal-title">💩 Log Manure Conveyor Waste / Fertilizer</h3>
+          <button class="modal-close-btn" onclick="closeModal('modalManureLog')">&times;</button>
+        </div>
+        <form onsubmit="event.preventDefault(); farmStore.addManureLog({
+          bags: this.bags.value,
+          moisture: this.moisture.value
+        }); closeModal('modalManureLog'); window.location.reload();">
+          <div class="modal-body">
+            <div class="form-row-2">
+              <div class="form-group">
+                <label class="form-label">50kg Sacks Bagged Today</label>
+                <input type="number" name="bags" value="24" required>
+              </div>
+              <div class="form-group">
+                <label class="form-label">Moisture Quality</label>
+                <select name="moisture">
+                  <option value="Conveyor Belt Dry">Conveyor Belt Dry (Premium Fertilizer)</option>
+                  <option value="Slightly Damp (Sun Drying)">Slightly Damp (Sun Drying Required)</option>
+                </select>
+              </div>
+            </div>
+            <div style="background:#ecfdf5; padding:12px; border-radius:12px; font-size:0.75rem; color:#065f46;">
+              <strong>Manure Revenue Benchmark:</strong> 24 bags @ ₦1,200 = <strong>₦28,800/day</strong> (~₦201,600/week) in commercial organic fertilizer sales!
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn-outline-pill" onclick="closeModal('modalManureLog')">Cancel</button>
+            <button type="submit" class="btn-forest">Record Manure Harvest</button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <script src="js/app.js"></script>
+  </body>
+</html>

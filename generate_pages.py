@@ -25,7 +25,7 @@ def get_sidebar(active_page):
 
     html = """
     <aside class="sidebar">
-      <a href="index.html" class="brand-header">
+      <a href="dashboard.html" class="brand-header">
         <div class="brand-logo-icon">🌿</div>
         <div class="brand-title-text">Precisco</div>
       </a>
@@ -80,9 +80,16 @@ def get_sidebar(active_page):
         """
 
     html += """
+        <!-- Sign Out Link in Sidebar -->
+        <a href="javascript:void(0);" onclick="farmStore.logout();" class="sidebar-nav-item" style="color:#ef4444; margin-top:8px;">
+          <div class="nav-left">
+            <span>🚪</span>
+            <span>Sign Out</span>
+          </div>
+        </a>
       </div>
 
-      <!-- Donezo-style Mobile App Promo Card -->
+      <!-- Mobile App Promo Card -->
       <div class="sidebar-promo-card">
         <div style="width:28px; height:28px; border-radius:50%; background:rgba(255,255,255,0.15); display:flex; align-items:center; justify-content:center; margin-bottom:8px; font-size:0.8rem;">📱</div>
         <h4>Precisco Mobile</h4>
@@ -103,7 +110,7 @@ def get_top_navbar():
         <span class="search-shortcut-badge">⌘F</span>
       </div>
 
-      <!-- Right Profile & Notifications (Donezo Style) -->
+      <!-- Right Profile, Sign Out & Notifications -->
       <div class="top-navbar-right">
         <button class="icon-round-btn" title="Messages" onclick="alert('No new shift handover messages.');">
           ✉️
@@ -114,13 +121,17 @@ def get_top_navbar():
           <span style="position:absolute; top:4px; right:4px; width:8px; height:8px; background:#ef4444; border-radius:50%;"></span>
         </a>
 
-        <div class="user-profile-widget" onclick="openModal('modalRoleSwitcher');">
+        <div class="user-profile-widget" onclick="openModal('modalRoleSwitcher');" title="Click to Switch User Role">
           <div class="avatar-circle" id="navAvatar">AA</div>
           <div class="user-info">
             <span class="user-name" id="navUserName">Mr. Adebayo Adeleke</span>
             <span class="user-email" id="navUserEmail">manager@preciscofarms.com</span>
           </div>
         </div>
+
+        <button onclick="farmStore.logout();" class="btn-outline-pill" style="padding:6px 14px; font-size:0.75rem; color:#ef4444; border-color:#fecaca;" title="Sign Out of Portal">
+          <span>Sign Out</span>
+        </button>
       </div>
     </div>
     """
@@ -307,8 +318,11 @@ def wrap_donezo_page(title, active_page, page_content):
 
     <script src="js/app.js"></script>
     <script>
-      // Personalization & Timer Sync
+      // Auth Guard & User Data Hydration
       document.addEventListener("DOMContentLoaded", () => {{
+        // Enforce Login Guard
+        farmStore.checkAuthGuard();
+
         const curUser = farmStore.state.currentUser;
         if (document.getElementById("navUserName")) document.getElementById("navUserName").innerText = curUser.name;
         if (document.getElementById("navUserEmail")) document.getElementById("navUserEmail").innerText = (curUser.email || (curUser.name.toLowerCase().split(" ")[0] + "@preciscofarms.com"));
@@ -345,7 +359,7 @@ def wrap_donezo_page(title, active_page, page_content):
 
         window.stopTimer = () => {{
           timerRunning = false;
-          alert('Shift duration logged: ' + timeDisplay.innerText);
+          alert('Shift duration logged: ' + (timeDisplay ? timeDisplay.innerText : '01:24:08'));
         }};
       }});
     </script>
@@ -353,4 +367,4 @@ def wrap_donezo_page(title, active_page, page_content):
 </html>
 """
 
-print("Donezo template generator updated successfully.")
+print("Donezo template generator updated with Auth Guard.")
